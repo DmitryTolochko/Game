@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{136F0151-57F3-48F5-AB11-45FE95A1D0C6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Game</RootNamespace>
+    <AssemblyName>Game</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpDX, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.4.2.0\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>packages\SharpDX.Desktop.4.2.0\lib\net45\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\Buttons.cs" />
+    <Compile Include="Attributes\PlayerAnimator.cs" />
+    <Compile Include="Attributes\Player.cs" />
+    <Compile Include="Attributes\SceneryGenerator.cs" />
+    <Compile Include="Attributes\LevelInterface.cs" />
+    <Compile Include="Attributes\Level.cs" />
+    <Compile Include="Attributes\WindowElement.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="GameWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameWindow.Designer.cs">
+      <DependentUpon>GameWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource2.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GameWindow.resx">
+      <DependentUpon>GameWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource2.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1 Layer Trees ver1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1 Layer Trees ver2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 Layer Trees ver1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 Layer Trees ver2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background Day time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background Night time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car 1 front.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\car 1 top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\City Day ver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\City Night ver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cloud 7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystals count.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Front Bushes 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Front Bushes 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game pause button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game pause button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp 1 front.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lamp 1 top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Exit button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Exit button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Light flash 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Light flash 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Name.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Play button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu Play button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree 1 front.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tree 1 top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00009.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00018.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00025.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00026.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00028.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00032.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00033.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00034.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Running_00035.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
