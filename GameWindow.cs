@@ -25,8 +25,8 @@ namespace Game
             table = new TableLayoutPanel();
             gameState = new GameState();
             DoubleBuffered = true;
-            ClientSize = new Size(1360, 768);
-            //FormBorderStyle = FormBorderStyle.FixedDialog;
+            ClientSize = new Size(1920, 1080);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             GetImages();
             gameState.CreateButtons(table);
             InitializeComponent();
