@@ -54,18 +54,25 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\Buttons.cs" />
-    <Compile Include="Attributes\PlayerAnimator.cs" />
-    <Compile Include="Attributes\Player.cs" />
-    <Compile Include="Attributes\SceneryGenerator.cs" />
-    <Compile Include="Attributes\LevelInterface.cs" />
-    <Compile Include="Attributes\Level.cs" />
+    <Compile Include="Resource3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource3.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ObstacleGenerator.cs" />
+    <Compile Include="Model\Obstacle.cs" />
+    <Compile Include="Control\Controller.cs" />
+    <Compile Include="Control\Buttons.cs" />
+    <Compile Include="View\PlayerAnimator.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="View\SceneryGenerator.cs" />
     <Compile Include="Attributes\WindowElement.cs" />
-    <Compile Include="GameState.cs" />
-    <Compile Include="GameWindow.cs">
+    <Compile Include="View\Menu.cs" />
+    <Compile Include="Model\GameModel.cs" />
+    <Compile Include="View\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameWindow.Designer.cs">
+    <Compile Include="View\GameWindow.Designer.cs">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -95,7 +102,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GameWindow.resx">
+    <EmbeddedResource Include="Resource3.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
@@ -319,6 +330,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Running_00035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reset button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reset button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Resume button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Resume button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu button down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu button up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Road.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bench.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bycicle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pulse%282%29.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sounds\Pulse.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

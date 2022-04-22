@@ -12,9 +12,9 @@ namespace Game
     {
         public readonly double yPosition;
         public readonly double xPosition;
-        public readonly Image Image;
+        public readonly Bitmap Image;
         public readonly Size Size;
-        public WindowElement (double x, double y, Image image, Size size)
+        public WindowElement (double x, double y, Bitmap image, Size size)
         {
             yPosition = y;
             xPosition = x;

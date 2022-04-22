@@ -130,12 +130,6 @@
   <data name="Button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car_1_front" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\car 1 front.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="car_1_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\car 1 top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="City_Day_ver" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\City Day ver.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,14 +172,14 @@
   <data name="Game_pause_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Game pause button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Lamp_1_front" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Lamp 1 front.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Lamp_1_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Lamp 1 top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Menu_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Menu Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_button_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Menu button down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Menu_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Menu button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Menu_Exit_button_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Menu Exit button down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,11 +202,23 @@
   <data name="Menu_Play_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Menu Play button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Tree_1_front" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Tree 1 front.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Pause_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Pause Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Tree_1_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Tree 1 top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Reset_button_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Reset button down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Reset_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Reset button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Resume_button_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Resume button down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Resume_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Resume button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Road" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_1_Layer_Trees_ver1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\1 Layer Trees ver1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

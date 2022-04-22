@@ -143,26 +143,6 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap car_1_front {
-            get {
-                object obj = ResourceManager.GetObject("car_1_front", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap car_1_top {
-            get {
-                object obj = ResourceManager.GetObject("car_1_top", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap City_Day_ver {
             get {
                 object obj = ResourceManager.GetObject("City_Day_ver", resourceCulture);
@@ -303,29 +283,29 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lamp_1_front {
-            get {
-                object obj = ResourceManager.GetObject("Lamp_1_front", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Lamp_1_top {
-            get {
-                object obj = ResourceManager.GetObject("Lamp_1_top", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Menu_Background {
             get {
                 object obj = ResourceManager.GetObject("Menu_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menu_button_down {
+            get {
+                object obj = ResourceManager.GetObject("Menu_button_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menu_button_up {
+            get {
+                object obj = ResourceManager.GetObject("Menu_button_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +383,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Tree_1_front {
+        internal static System.Drawing.Bitmap Pause_Background {
             get {
-                object obj = ResourceManager.GetObject("Tree_1_front", resourceCulture);
+                object obj = ResourceManager.GetObject("Pause_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +393,49 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Tree_1_top {
+        internal static System.Drawing.Bitmap Reset_button_down {
             get {
-                object obj = ResourceManager.GetObject("Tree_1_top", resourceCulture);
+                object obj = ResourceManager.GetObject("Reset_button_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reset_button_up {
+            get {
+                object obj = ResourceManager.GetObject("Reset_button_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Resume_button_down {
+            get {
+                object obj = ResourceManager.GetObject("Resume_button_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Resume_button_up {
+            get {
+                object obj = ResourceManager.GetObject("Resume_button_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Road {
+            get {
+                object obj = ResourceManager.GetObject("Road", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
