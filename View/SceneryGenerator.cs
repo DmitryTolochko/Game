@@ -16,7 +16,7 @@ namespace Game
         private List<Bitmap[]> previousImages = new List<Bitmap[]>();
         private bool IsFisrtFrame;
 
-        public void UpdateScenery(Size windowSize, GameModel level, Dictionary<string, Bitmap> images, bool IsFisrtFrame, Player player, List<Obstacle> obstacles)
+        public void UpdateScenery(Size windowSize, GameModel level, Dictionary<string, Bitmap> images, bool IsFisrtFrame, Player player, List<Obstacle> obstacles, List<Diamond> diamonds)
         {
             this.windowSize = windowSize;
             this.IsFisrtFrame = IsFisrtFrame;
@@ -37,9 +37,15 @@ namespace Game
 
             foreach (var obstacle in obstacles)
                 AddElement(level, obstacle.Image, obstacle.ActualLocation, obstacle.Size);
-            player.PlayerAnimator.AnimatePlayer(windowSize, level);
-            AddElement(level, images["Crystals_count"], 0, 0);
+            foreach (var diamond in diamonds)
+                diamond.Animator.Animate(windowSize, level, diamond);
 
+            if (player.IsJumping)
+                player.JumpAnimation.AnimatePlayer(windowSize, level);
+            else
+                player.RunAnimation.AnimatePlayer(windowSize, level);
+
+            AddElement(level, images["Crystals_count"], 0, 0);
             RecalculateImagesPositions();
         }
 

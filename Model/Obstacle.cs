@@ -12,6 +12,7 @@ namespace Game
         public readonly Bitmap Image;
         public Point ActualLocation;
         public readonly Size Size;
+        public bool HadCrystal = false;
         public byte[,] pixels;
 
         public Obstacle(Size windowSize, Bitmap image)

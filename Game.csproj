@@ -54,16 +54,28 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\Labels.cs" />
+    <Compile Include="Model\Diamond.cs" />
     <Compile Include="Resource3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource3.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resource4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource4.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource5.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\ObstacleGenerator.cs" />
     <Compile Include="Model\Obstacle.cs" />
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Control\Buttons.cs" />
-    <Compile Include="View\PlayerAnimator.cs" />
+    <Compile Include="View\Animator.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="View\SceneryGenerator.cs" />
     <Compile Include="Attributes\WindowElement.cs" />
@@ -105,6 +117,14 @@
     <EmbeddedResource Include="Resource3.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource4.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource4.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource5.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource5.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
@@ -369,6 +389,213 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\Pulse.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00009.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00018.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00025.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00026.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00028.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00032.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00033.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00034.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crystal_00035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00018.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00025.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00026.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00028.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00032.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00033.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00009.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jumping_00013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Game Over BG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

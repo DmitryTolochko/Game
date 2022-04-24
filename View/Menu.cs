@@ -42,5 +42,13 @@ namespace Game
             Controls.Add(level.buttons.RecetButton);
             level.windowElements.Add(new WindowElement(0, 0, images["Pause_Background"], windowSize));
         }
+
+        public void GameOverMenu(ControlCollection Controls, Size windowSize, GameModel level, Dictionary<string, Bitmap> images)
+        {
+            Controls.Clear();
+            Controls.Add(level.buttons.RecetButton);
+            Controls.Add(level.buttons.BackToMainMenuButton);
+            level.windowElements.Add(new WindowElement(0, 0, images["Game_Over_BG"], windowSize));
+        }
     }
 }

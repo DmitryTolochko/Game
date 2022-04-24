@@ -7,15 +7,15 @@ using System.Resources;
 
 namespace Game
 {
-    public class PlayerAnimator
+    public class Animator
     {
         private Bitmap[] Animation;
         private int countFrame;
 
-        public PlayerAnimator()
+        public Animator(ResourceManager resourceManager)
         {
             var collection = new Dictionary<string, Bitmap>();
-            ResourceManager MyResourceClass = new ResourceManager(typeof(Resource2));
+            var MyResourceClass = resourceManager;
             ResourceSet resourceSet = MyResourceClass.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             foreach (DictionaryEntry entry in resourceSet)
             {
@@ -29,10 +29,24 @@ namespace Game
         {
             level.windowElements.Add(new WindowElement(level.player.ActualLocation.X, level.player.ActualLocation.Y,
                 Animation[countFrame], new Size(windowSize.Width*36/100, windowSize.Height*64/100)));
-            if (countFrame != 34)
+            if (countFrame != Animation.Length-1)
                 countFrame++;
             else
                 countFrame = 0;
+        }
+
+        public void Animate(Size windowSize, GameModel level, Diamond diamond)
+        {
+            level.windowElements.Add(new WindowElement(diamond.ActualLocation.X, diamond.ActualLocation.Y, Animation[countFrame], diamond.Size));
+            if (countFrame != Animation.Length - 1)
+                countFrame++;
+            else
+                countFrame = 0;
+        }
+
+        public void RestartAnimation()
+        {
+            countFrame = 0;
         }
     }
 }

@@ -42,6 +42,10 @@ namespace Game
         {
             if (gameModel.IsGameFinished)
             {
+                StreamWriter file = new StreamWriter(@"Data.txt");
+                file.WriteLine(gameModel.BestScore);
+                file.WriteLine(gameModel.CrystalsCount);
+                file.Close();
                 gameModel = new GameModel(Controls, ClientSize);
                 menu.MainMenu(Controls, ClientSize, gameModel, images);
             }

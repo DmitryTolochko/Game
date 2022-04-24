@@ -22,14 +22,14 @@ namespace Game {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource1 {
+    internal class Resource4 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource1() {
+        internal Resource4() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Game {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Game.Resource1", typeof(Resource1).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Game.Resource4", typeof(Resource4).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1_Layer_Trees_ver1 {
+        internal static System.Drawing.Bitmap Crystal_00001 {
             get {
-                object obj = ResourceManager.GetObject("_1_Layer_Trees_ver1", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00001", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1_Layer_Trees_ver2 {
+        internal static System.Drawing.Bitmap Crystal_00002 {
             get {
-                object obj = ResourceManager.GetObject("_1_Layer_Trees_ver2", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00002", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2_Layer_Trees_ver1 {
+        internal static System.Drawing.Bitmap Crystal_00003 {
             get {
-                object obj = ResourceManager.GetObject("_2_Layer_Trees_ver1", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00003", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2_Layer_Trees_ver2 {
+        internal static System.Drawing.Bitmap Crystal_00004 {
             get {
-                object obj = ResourceManager.GetObject("_2_Layer_Trees_ver2", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00004", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Background_Day_time {
+        internal static System.Drawing.Bitmap Crystal_00005 {
             get {
-                object obj = ResourceManager.GetObject("Background_Day_time", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00005", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Background_Night_time {
+        internal static System.Drawing.Bitmap Crystal_00006 {
             get {
-                object obj = ResourceManager.GetObject("Background_Night_time", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00006", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Button_down {
+        internal static System.Drawing.Bitmap Crystal_00007 {
             get {
-                object obj = ResourceManager.GetObject("Button_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00007", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Button_up {
+        internal static System.Drawing.Bitmap Crystal_00008 {
             get {
-                object obj = ResourceManager.GetObject("Button_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00008", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap City_Day_ver {
+        internal static System.Drawing.Bitmap Crystal_00009 {
             get {
-                object obj = ResourceManager.GetObject("City_Day_ver", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00009", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap City_Night_ver {
+        internal static System.Drawing.Bitmap Crystal_00010 {
             get {
-                object obj = ResourceManager.GetObject("City_Night_ver", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00010", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_1 {
+        internal static System.Drawing.Bitmap Crystal_00011 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_1", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00011", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_2 {
+        internal static System.Drawing.Bitmap Crystal_00012 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_2", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00012", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_3 {
+        internal static System.Drawing.Bitmap Crystal_00013 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_3", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00013", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_4 {
+        internal static System.Drawing.Bitmap Crystal_00014 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_4", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00014", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +203,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_5 {
+        internal static System.Drawing.Bitmap Crystal_00015 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_5", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00015", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_6 {
+        internal static System.Drawing.Bitmap Crystal_00016 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_6", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00016", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cloud_7 {
+        internal static System.Drawing.Bitmap Crystal_00017 {
             get {
-                object obj = ResourceManager.GetObject("Cloud_7", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00017", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +233,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Crystals_count {
+        internal static System.Drawing.Bitmap Crystal_00018 {
             get {
-                object obj = ResourceManager.GetObject("Crystals_count", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00018", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Front_Bushes_1 {
+        internal static System.Drawing.Bitmap Crystal_00019 {
             get {
-                object obj = ResourceManager.GetObject("Front_Bushes_1", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00019", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +253,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Front_Bushes_2 {
+        internal static System.Drawing.Bitmap Crystal_00020 {
             get {
-                object obj = ResourceManager.GetObject("Front_Bushes_2", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00020", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +263,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Game_Over_BG {
+        internal static System.Drawing.Bitmap Crystal_00021 {
             get {
-                object obj = ResourceManager.GetObject("Game_Over_BG", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00021", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +273,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Game_pause_button_down {
+        internal static System.Drawing.Bitmap Crystal_00022 {
             get {
-                object obj = ResourceManager.GetObject("Game_pause_button_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00022", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +283,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Game_pause_button_up {
+        internal static System.Drawing.Bitmap Crystal_00023 {
             get {
-                object obj = ResourceManager.GetObject("Game_pause_button_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00023", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +293,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Background {
+        internal static System.Drawing.Bitmap Crystal_00024 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00024", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +303,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_button_down {
+        internal static System.Drawing.Bitmap Crystal_00025 {
             get {
-                object obj = ResourceManager.GetObject("Menu_button_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00025", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +313,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_button_up {
+        internal static System.Drawing.Bitmap Crystal_00026 {
             get {
-                object obj = ResourceManager.GetObject("Menu_button_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00026", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +323,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Exit_button_down {
+        internal static System.Drawing.Bitmap Crystal_00027 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Exit_button_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00027", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +333,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Exit_button_up {
+        internal static System.Drawing.Bitmap Crystal_00028 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Exit_button_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00028", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +343,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Light_flash_1 {
+        internal static System.Drawing.Bitmap Crystal_00029 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Light_flash_1", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00029", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +353,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Light_flash_2 {
+        internal static System.Drawing.Bitmap Crystal_00030 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Light_flash_2", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00030", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +363,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Name {
+        internal static System.Drawing.Bitmap Crystal_00031 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Name", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00031", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,9 +373,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Play_button_down {
+        internal static System.Drawing.Bitmap Crystal_00032 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Play_button_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00032", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +383,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu_Play_button_up {
+        internal static System.Drawing.Bitmap Crystal_00033 {
             get {
-                object obj = ResourceManager.GetObject("Menu_Play_button_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00033", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +393,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Pause_Background {
+        internal static System.Drawing.Bitmap Crystal_00034 {
             get {
-                object obj = ResourceManager.GetObject("Pause_Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00034", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,49 +403,9 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Reset_button_down {
+        internal static System.Drawing.Bitmap Crystal_00035 {
             get {
-                object obj = ResourceManager.GetObject("Reset_button_down", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Reset_button_up {
-            get {
-                object obj = ResourceManager.GetObject("Reset_button_up", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Resume_button_down {
-            get {
-                object obj = ResourceManager.GetObject("Resume_button_down", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Resume_button_up {
-            get {
-                object obj = ResourceManager.GetObject("Resume_button_up", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Road {
-            get {
-                object obj = ResourceManager.GetObject("Road", resourceCulture);
+                object obj = ResourceManager.GetObject("Crystal_00035", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
