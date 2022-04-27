@@ -130,6 +130,33 @@
   <data name="Button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Character_Opened_00001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Opened_00001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Opened_00002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Opened_00002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Opened_00003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Opened_00003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Opened_00004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Opened_00004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Opened_00005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Opened_00005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Unopened_00001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Unopened_00001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Unopened_00003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Unopened_00003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Unopened_00004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Unopened_00004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Unopened_00005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Unopened_00005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="City_Day_ver" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\City Day ver.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -222,6 +249,9 @@
   </data>
   <data name="Road" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Store_BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Store BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_1_Layer_Trees_ver1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\1 Layer Trees ver1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

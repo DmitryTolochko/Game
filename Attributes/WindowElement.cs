@@ -14,6 +14,7 @@ namespace Game
         public readonly double xPosition;
         public readonly Bitmap Image;
         public readonly Size Size;
+        public Rectangle rectangle;
         public WindowElement (double x, double y, Bitmap image, Size size)
         {
             yPosition = y;

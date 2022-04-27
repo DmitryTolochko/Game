@@ -11,9 +11,9 @@ namespace Game
     {
         public readonly Bitmap Image;
         public Point ActualLocation;
-        public readonly Size Size;
+        public Size Size;
         public bool HadCrystal = false;
-        public byte[,] pixels;
+        public Rectangle WorkSpace;
 
         public Obstacle(Size windowSize, Bitmap image)
         {
@@ -21,21 +21,15 @@ namespace Game
             Image = image;
             Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920), 
                 (int)(Image.Height * 2.4 * windowSize.Height / 1080));
-            pixels = LoadPixels(Image);
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
         }
 
-        public void Move(int speed)
+        public void Move(int speed, Size windowSize)
         {
-            ActualLocation = new Point(ActualLocation.X - speed, ActualLocation.Y);
-        }
-
-        public static byte[,] LoadPixels(Bitmap bmp)
-        {
-            var pixels = new byte[bmp.Width, bmp.Height];
-            for (var x = 0; x < bmp.Width; x++)
-                for (var y = 0; y < bmp.Height; y++)
-                    pixels[x, y] = bmp.GetPixel(x, y).A;
-            return pixels;
+            Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920),
+                (int)(Image.Height * 2.4 * windowSize.Height / 1080));
+            ActualLocation = new Point(ActualLocation.X - speed, 8 * windowSize.Height / 12);
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
         }
     }
 }

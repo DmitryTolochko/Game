@@ -25,14 +25,8 @@ namespace Game
             DoubleBuffered = true;
             ClientSize = windowSize;
             gameModel = new GameModel(Controls, ClientSize);
-            menu = new Menu();
-            //FormBorderStyle = FormBorderStyle.FixedDialog;
-            //System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            //Stream s = a.GetManifestResourceStream(@"Game.Sounds.Pulse.wav");
-            //SoundPlayer player = new SoundPlayer(s);
-            
+            menu = new Menu();            
             GetImages();
-            //InitializeComponent();
             timer.Interval = 16;
             timer.Tick += TimerTick;
             timer.Start();
@@ -40,31 +34,48 @@ namespace Game
 
         private void TimerTick(object sender, EventArgs args)
         {
-            if (gameModel.IsGameFinished)
+            if (gameModel.BackToMenu)
+            {
+                menu.MainMenu(Controls, ClientSize, gameModel, images);
+                gameModel.Reset = true;
+            }
+            else if (gameModel.Reset)
+            {
+                menu.IsFirstFrame = true;
+                gameModel = new GameModel(Controls, ClientSize) { BackToMenu = false };
+            }
+            else if (gameModel.IsGameResumed)
+            {
+                menu.IsFirstFrame = true;
+                gameModel.NextFrame(Controls, ClientSize, images);
+                gameModel.IsGameResumed = false;
+                gameModel.IsGamePaused = false;
+            }
+            else if (gameModel.IsGameFinished)
             {
                 StreamWriter file = new StreamWriter(@"Data.txt");
                 file.WriteLine(gameModel.BestScore);
-                file.WriteLine(gameModel.CrystalsCount);
+                file.WriteLine(gameModel.BestCrystalCount);
                 file.Close();
-                gameModel = new GameModel(Controls, ClientSize);
-                menu.MainMenu(Controls, ClientSize, gameModel, images);
+                menu.GameOverMenu(Controls, ClientSize, gameModel, images);
             }
-            if (gameModel.Reset)
-                gameModel = new GameModel(Controls, ClientSize) { IsGameStarted = true };
-
-            if (gameModel.IsGameStarted && !gameModel.IsGamePaused || gameModel.IsGameResumed)
-                gameModel.NextFrame(Controls, ClientSize, images);
-            else if (gameModel.IsGamePaused && gameModel.IsGameStarted)
+            else if (gameModel.IsGamePaused)
                 menu.PauseMenu(Controls, ClientSize, gameModel, images);
-            else if (gameModel.IsGameFinished && !gameModel.IsGameStarted)
-            {
-                gameModel = new GameModel(Controls, ClientSize);
-                menu.MainMenu(Controls, ClientSize, gameModel, images);
-            }
             else
-                menu.MainMenu(Controls, ClientSize, gameModel, images);
-            //Game.Menu.MainMenu(Controls, ClientSize, gameModel, images);
+            {
+                gameModel.NextFrame(Controls, ClientSize, images);
+                menu.IsFirstFrame = true;
+                //menu.soundPlayer.Stop();
+            }
             Invalidate();
+            if ((gameModel.IsGamePaused || gameModel.IsGameFinished) && gameModel.BackToMenu)
+            {
+                menu.IsFirstFrame = true;
+                if (gameModel.IsGamePaused)
+                    gameModel.IsGamePaused = false;
+                else
+                    gameModel.IsGameFinished = false;
+            }
         }
 
         private void GetImages()
@@ -101,6 +112,8 @@ namespace Game
                     (float)windowElement.yPosition,
                     windowElement.Size.Width,
                     windowElement.Size.Height);
+                if (!windowElement.rectangle.IsEmpty)
+                    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
             }
             ResumeLayout();
         }

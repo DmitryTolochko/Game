@@ -30,7 +30,7 @@ namespace Game
             {
                 targetDirections.Add(TargetDirection.Nowhere);
             }
-            level.player.MoveTo(targetDirections);
+            level.player.MoveTo(targetDirections, level.windowSize);
         }
     }
 }

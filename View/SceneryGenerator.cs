@@ -12,7 +12,7 @@ namespace Game
         private double x2 = 0;
         private double x3 = 0;
         private double x4 = 0;
-        Random random = new Random();
+        private Random random = new Random();
         private List<Bitmap[]> previousImages = new List<Bitmap[]>();
         private bool IsFisrtFrame;
 
@@ -36,7 +36,10 @@ namespace Game
             AddElement(level, images["Road"], images["Road"], x4, 0, windowSize, previousImages[3]);
 
             foreach (var obstacle in obstacles)
+            {
                 AddElement(level, obstacle.Image, obstacle.ActualLocation, obstacle.Size);
+                level.windowElements.Last().rectangle = new Rectangle(obstacle.ActualLocation.X+ obstacle.Size.Width/7, obstacle.ActualLocation.Y, obstacle.Size.Width - obstacle.Size.Width*2 / 7, obstacle.Size.Height);
+            }
             foreach (var diamond in diamonds)
                 diamond.Animator.Animate(windowSize, level, diamond);
 
@@ -44,8 +47,8 @@ namespace Game
                 player.JumpAnimation.AnimatePlayer(windowSize, level);
             else
                 player.RunAnimation.AnimatePlayer(windowSize, level);
-
-            AddElement(level, images["Crystals_count"], 0, 0);
+            level.windowElements.Last().rectangle = new Rectangle((int)player.ActualLocation.X + player.Size.Width*3/7, (int)player.ActualLocation.Y + player.Size.Height*2/ 7, player.Size.Width/4, player.Size.Height*2/5);
+                AddElement(level, images["Crystals_count"], 0, 0);
             RecalculateImagesPositions();
         }
 

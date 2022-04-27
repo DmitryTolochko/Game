@@ -143,6 +143,96 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Character_Opened_00001 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Opened_00001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Opened_00002 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Opened_00002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Opened_00003 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Opened_00003", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Opened_00004 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Opened_00004", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Opened_00005 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Opened_00005", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Unopened_00001 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Unopened_00001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Unopened_00003 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Unopened_00003", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Unopened_00004 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Unopened_00004", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Character_Unopened_00005 {
+            get {
+                object obj = ResourceManager.GetObject("Character_Unopened_00005", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap City_Day_ver {
             get {
                 object obj = ResourceManager.GetObject("City_Day_ver", resourceCulture);
@@ -446,6 +536,16 @@ namespace Game {
         internal static System.Drawing.Bitmap Road {
             get {
                 object obj = ResourceManager.GetObject("Road", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Store_BG {
+            get {
+                object obj = ResourceManager.GetObject("Store_BG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

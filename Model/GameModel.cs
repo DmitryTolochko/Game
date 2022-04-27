@@ -18,13 +18,14 @@ namespace Game
         public Player player;
         private List<Obstacle> obstacles;
         public List<Diamond> diamonds;
-        public SoundPlayer soundPlayer;
-        public int BestScore;
-        public int Score = 0;
-        private int count = 0;
-        public int CrystalsCount = 0;
-        private Labels labels;
 
+        public int BestScore;
+        public int Score;
+        public int count;
+        public int BestCrystalCount;
+        public int CrystalCount;
+
+        public Labels labels;
         public Buttons buttons;
         public List<WindowElement> windowElements = new List<WindowElement>();
         public Keys KeyPressed;
@@ -35,6 +36,7 @@ namespace Game
         public bool IsGameResumed = false;
         public bool IsGameFinished = false;
         public bool Reset = false;
+        public bool BackToMenu = true;
         public bool IsFirstFrame = true;
 
         public GameModel(ControlCollection Controls, Size windowSize)
@@ -42,9 +44,8 @@ namespace Game
             this.windowSize = windowSize;
             StreamReader stream = new StreamReader(@"Data.txt");
             BestScore = int.Parse(stream.ReadLine());
-            CrystalsCount = int.Parse(stream.ReadLine());
+            BestCrystalCount = int.Parse(stream.ReadLine());
             stream.Close();
-            soundPlayer = new SoundPlayer();
             sceneryGenerator = new SceneryGenerator();
             obstacleGenerator = new ObstacleGenerator();
             buttons = new Buttons(this,  windowSize);
@@ -80,11 +81,15 @@ namespace Game
             CheckDiamondCollision();
             sceneryGenerator.UpdateScenery(windowSize, this, images, IsFirstFrame, player, obstacles, diamonds);
             UpdateScore(Controls);
+            MusicPlayer.Play(MusicType.Game, IsFirstFrame);
+            MusicPlayer.Play(MusicType.Park, IsFirstFrame);
             IsFirstFrame = false;
         }
 
         private void UpdateScore(ControlCollection Controls)
         {
+            labels.ScoreLabel.Location = labels.GameScoreLocation;
+            labels.CrystalCountLabel.Location = labels.GameCrystalCountLocation;
             if (count != 10)
                 count += 1;
             else
@@ -92,12 +97,18 @@ namespace Game
                 count = 0;
                 Score += 1;
                 labels.ScoreLabel.Text = Score.ToString();
-                labels.CrystalCountLabel.Text = CrystalsCount.ToString();
                 Controls.Remove(labels.ScoreLabel);
                 Controls.Add(labels.ScoreLabel);
             }
             if (Score > BestScore)
                 BestScore = Score;
+
+            labels.CrystalCountLabel.Text = CrystalCount.ToString();
+            labels.BestScoreLabel.Text = BestScore.ToString();
+            labels.GameOver_ScoreLabel.Text = labels.ScoreLabel.Text;
+            labels.GameOver_BestScoreLabel.Text = labels.BestScoreLabel.Text;
+            labels.BestCrystalCountLabel.Text = BestCrystalCount.ToString();
+
             Controls.Remove(labels.CrystalCountLabel);
             Controls.Add(labels.CrystalCountLabel);
         }
@@ -106,31 +117,13 @@ namespace Game
         {
             foreach (var obstacle in obstacles)
             {
-                var playerX = player.ActualLocation.X + player.Size.Width / 2;
-                var playerY = player.ActualLocation.Y + player.Size.Height * 2 / 3;
-                var distanceX = obstacle.ActualLocation.X - playerX;
-                var distanceY = obstacle.ActualLocation.Y - playerY;
-                var dx = System.Math.Abs(distanceX * 1920 / (2.4 * windowSize.Width));
-                //if (distanceX == 0 && (player.ActualLocation.Y + player.Size.Height <= obstacle.ActualLocation.Y))
-                //    IsGameFinished = true;
-                if (distanceX == 0 && player.ActualLocation.Y + player.Size.Height <= obstacle.ActualLocation.Y)
+                if (Math.Abs(player.WorkSpace.Right - obstacle.WorkSpace.Left) <= 20 &&
+                        (player.WorkSpace.Bottom > obstacle.WorkSpace.Top))
                     IsGameFinished = true;
-                else if (obstacle.ActualLocation.X <= player.ActualLocation.X + player.Size.Width &&
-                    obstacle.ActualLocation.Y <= player.ActualLocation.Y + player.Size.Height &&
-                    obstacle.ActualLocation.X + obstacle.Size.Width >= player.ActualLocation.X &&
-                    obstacle.ActualLocation.Y + obstacle.Size.Height >= player.ActualLocation.Y &&
-                    distanceX <= 0 && distanceY <= 0)
-                {
-                    try
-                    {
-                        if (distanceX <= 0 && distanceY <= 0 && obstacle.pixels[(int)dx, 108] != 0)
-                            IsGameFinished = true;
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
+                if (player.WorkSpace.IntersectsWith(obstacle.WorkSpace) && !IsGameFinished)
+                    player.Border = player.Size.Height - obstacle.WorkSpace.Top;
+                else
+                    player.Border = player.SpawnLocation.Y;
             }
         }
 
@@ -144,7 +137,7 @@ namespace Game
             if (obstacles.Count > 0 && obstacles[0].ActualLocation.X < -windowSize.Width)
                 obstacles.RemoveAt(0);
             foreach (var obstacle in obstacles)
-                obstacle.Move(13);
+                obstacle.Move(13, windowSize);
 
             if (diamonds.Count == 0)
                 diamonds.Add(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height*3 / 1080))));
@@ -156,9 +149,9 @@ namespace Game
                     obstacles.Last().ActualLocation.Y - (int)(50 * 2.4 * windowSize.Height / 1080))));
                 obstacles.Last().HadCrystal = true;
             }
-
             //else if (diamonds.Count < 6 && random.Next() % 15 == 0 && diamonds.Last().ActualLocation.X + diamonds.Last().Size.Width <= windowSize.Width)
             //    diamonds.Add(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height / 1080))));
+
             if (diamonds.Count > 0 && diamonds[0].ActualLocation.X < -windowSize.Width)
                 diamonds.RemoveAt(0);
             foreach (var diamond in diamonds)
@@ -168,12 +161,16 @@ namespace Game
         private void CheckDiamondCollision()
         {
             foreach (var diamond in diamonds)
-                if (Math.Abs(player.ActualLocation.X + diamond.Size.Width - diamond.ActualLocation.X) <= diamond.Size.Width)
+                if (player.WorkSpace.Contains(diamond.ActualLocation.X + diamond.Size.Width, diamond.ActualLocation.Y))
                 {
                     diamond.IsCollected = true;
-                    CrystalsCount++;
+                    CrystalCount++;
+                    BestCrystalCount++;
+                    MusicPlayer.Play(SoundType.Crystal);
                 }
-            diamonds = diamonds.Where(x => x.IsCollected == false).ToList();
+            diamonds = diamonds
+                .Where(x => x.IsCollected == false)
+                .ToList();
         }
     }
 }
