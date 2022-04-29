@@ -8,6 +8,7 @@ using System.Resources;
 using System.Collections;
 using System.Globalization;
 using System.Media;
+using System.Drawing.Text;
 
 namespace Game
 {
@@ -15,8 +16,8 @@ namespace Game
     {
         public Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
         public static readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
-
         private GameModel gameModel;
+        private Store store;
         private Menu menu;
         private readonly Timer timer = new Timer();
 
@@ -25,6 +26,7 @@ namespace Game
             DoubleBuffered = true;
             ClientSize = windowSize;
             gameModel = new GameModel(Controls, ClientSize);
+            store = new Store(ClientSize);
             menu = new Menu();            
             GetImages();
             timer.Interval = 16;
@@ -34,10 +36,22 @@ namespace Game
 
         private void TimerTick(object sender, EventArgs args)
         {
-            if (gameModel.BackToMenu)
+            if (gameModel.GoToStore)
+            {
+                store.NextFrame(Controls, ClientSize, gameModel, images);
+                StreamWriter file = new StreamWriter(@"Data.txt");
+                menu.IsFirstFrame = true;
+                file.WriteLine(gameModel.BestScore);
+                file.WriteLine(gameModel.BestCrystalCount);
+                file.WriteLine(gameModel.SkinNumber);
+                file.WriteLine(gameModel.AcquiredSkins);
+                file.Close();
+            }
+            else if (gameModel.BackToMenu)
             {
                 menu.MainMenu(Controls, ClientSize, gameModel, images);
                 gameModel.Reset = true;
+                store.IsFirstFrame = true;
             }
             else if (gameModel.Reset)
             {
@@ -56,6 +70,8 @@ namespace Game
                 StreamWriter file = new StreamWriter(@"Data.txt");
                 file.WriteLine(gameModel.BestScore);
                 file.WriteLine(gameModel.BestCrystalCount);
+                file.WriteLine(gameModel.SkinNumber);
+                file.WriteLine(gameModel.AcquiredSkins);
                 file.Close();
                 menu.GameOverMenu(Controls, ClientSize, gameModel, images);
             }
@@ -65,7 +81,6 @@ namespace Game
             {
                 gameModel.NextFrame(Controls, ClientSize, images);
                 menu.IsFirstFrame = true;
-                //menu.soundPlayer.Stop();
             }
             Invalidate();
             if ((gameModel.IsGamePaused || gameModel.IsGameFinished) && gameModel.BackToMenu)

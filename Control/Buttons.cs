@@ -13,6 +13,7 @@ namespace Game
         public CustomButton ResumeButton;
         public CustomButton PauseBackToMainMenuButton;
         public CustomButton GameOverBackToMainMenuButton;
+        public CustomButton GoToStoreButton;
 
         public Buttons(GameModel gameModel, Size windowSize)
         {
@@ -23,8 +24,13 @@ namespace Game
             PlayButton.Click += (sender, args) => gameModel.IsGameStarted = true;
             PlayButton.Click += (sender, args) => gameModel.BackToMenu = false;
 
+            GoToStoreButton = new CustomButton(new Point(PlayButton.Location.X,
+                (int)(PlayButton.Location.Y + PlayButton.Size.Height * 1.5)),
+                Resource1.Store_button_up, Resource1.Store_button_down, windowSize);
+            GoToStoreButton.Click += (sender, args) => gameModel.GoToStore = true;
+
             ExitButton = new CustomButton(new Point(PlayButton.Location.X, 
-                (int)(PlayButton.Location.Y + PlayButton.Size.Height*1.5)), 
+                (int)(GoToStoreButton.Location.Y + PlayButton.Size.Height*1.5)), 
                 Resource1.Menu_Exit_button_up, Resource1.Menu_Exit_button_down, windowSize);
             ExitButton.Click += (sender, args) => Application.Exit();
 
@@ -34,6 +40,7 @@ namespace Game
                 Resource1.Menu_button_up, Resource1.Menu_button_down, windowSize);
             PauseBackToMainMenuButton.Click += (sender, args) => gameModel.BackToMenu = true;
             PauseBackToMainMenuButton.Click += (sender, args) => gameModel.IsGameStarted = false;
+            PauseBackToMainMenuButton.Click += (sender, args) => gameModel.GoToStore = false;
 
             ResumeButton = new CustomButton(new Point(PauseBackToMainMenuButton.Location.X, 
                 (int)(PauseBackToMainMenuButton.Location.Y - PlayButton.Size.Height * 1.5)), 
@@ -57,14 +64,15 @@ namespace Game
                 Resource1.Menu_button_up, Resource1.Menu_button_down, windowSize);
             GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.BackToMenu = true;
             GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.IsGameStarted = false;
+            GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.GoToStore = false;
         }
     }
 
     public class CustomButton : Button
     {
-        public CustomButton(Point point, Bitmap UnpluggedButton, Bitmap PluggedButton, Size windowSize)
+        public CustomButton(Point location, Bitmap UnpluggedButton, Bitmap PluggedButton, Size windowSize)
         {
-            Location = point;
+            Location = location;
             Image = ResizedImage(windowSize, UnpluggedButton);
             FlatAppearance.BorderSize = 0;
             FlatStyle = FlatStyle.Flat;

@@ -24,6 +24,8 @@ namespace Game
         public int count;
         public int BestCrystalCount;
         public int CrystalCount;
+        public int SkinNumber;
+        public int AcquiredSkins;
 
         public Labels labels;
         public Buttons buttons;
@@ -38,6 +40,7 @@ namespace Game
         public bool Reset = false;
         public bool BackToMenu = true;
         public bool IsFirstFrame = true;
+        public bool GoToStore = false;
 
         public GameModel(ControlCollection Controls, Size windowSize)
         {
@@ -45,11 +48,13 @@ namespace Game
             StreamReader stream = new StreamReader(@"Data.txt");
             BestScore = int.Parse(stream.ReadLine());
             BestCrystalCount = int.Parse(stream.ReadLine());
+            SkinNumber = int.Parse(stream.ReadLine());
+            AcquiredSkins = int.Parse(stream.ReadLine());
+            player = new Player(windowSize, SkinNumber);
             stream.Close();
             sceneryGenerator = new SceneryGenerator();
             obstacleGenerator = new ObstacleGenerator();
             buttons = new Buttons(this,  windowSize);
-            player = new Player(windowSize);
             obstacles = new List<Obstacle>();
             diamonds = new List<Diamond>();
             Controls.Clear();

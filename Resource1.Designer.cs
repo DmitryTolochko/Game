@@ -103,6 +103,16 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2_Layer_Trees_ver3 {
+            get {
+                object obj = ResourceManager.GetObject("_2_Layer_Trees_ver3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Background_Day_time {
             get {
                 object obj = ResourceManager.GetObject("Background_Day_time", resourceCulture);
@@ -316,6 +326,16 @@ namespace Game {
         internal static System.Drawing.Bitmap Cloud_7 {
             get {
                 object obj = ResourceManager.GetObject("Cloud_7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Crystals {
+            get {
+                object obj = ResourceManager.GetObject("Crystals", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -546,6 +566,26 @@ namespace Game {
         internal static System.Drawing.Bitmap Store_BG {
             get {
                 object obj = ResourceManager.GetObject("Store_BG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Store_button_down {
+            get {
+                object obj = ResourceManager.GetObject("Store_button_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Store_button_up {
+            get {
+                object obj = ResourceManager.GetObject("Store_button_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

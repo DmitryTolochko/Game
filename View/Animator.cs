@@ -27,8 +27,10 @@ namespace Game
 
         public void AnimatePlayer(Size windowSize, GameModel level)
         {
-            if (countFrame == 0 || countFrame == Animation.Length / 2)
+            if ((countFrame == 0 || countFrame == Animation.Length / 2) && !level.player.IsJumping)
                 MusicPlayer.Play(SoundType.Run);
+            //else if ((countFrame == 0) && level.player.IsJumping)
+            //    MusicPlayer.Play(SoundType.Jump);
             level.windowElements.Add(new WindowElement(level.player.ActualLocation.X, level.player.ActualLocation.Y,
                 Animation[countFrame], new Size(windowSize.Width*36/100, windowSize.Height*64/100)));
             if (countFrame != Animation.Length - 1)

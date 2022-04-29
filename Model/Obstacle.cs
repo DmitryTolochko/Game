@@ -17,10 +17,10 @@ namespace Game
 
         public Obstacle(Size windowSize, Bitmap image)
         {
-            ActualLocation = new Point(windowSize.Width + image.Width, 8*windowSize.Height/12);
             Image = image;
             Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920), 
                 (int)(Image.Height * 2.4 * windowSize.Height / 1080));
+            ActualLocation = new Point(windowSize.Width + image.Width, windowSize.Height - Size.Height);
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
         }
 
@@ -28,7 +28,7 @@ namespace Game
         {
             Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920),
                 (int)(Image.Height * 2.4 * windowSize.Height / 1080));
-            ActualLocation = new Point(ActualLocation.X - speed, 8 * windowSize.Height / 12);
+            ActualLocation = new Point(ActualLocation.X - speed, windowSize.Height - Size.Height);
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
         }
     }

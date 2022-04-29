@@ -18,6 +18,7 @@ namespace Game
     {
         Run,
         Crystal,
+        Jump
     }
 
     public static class MusicPlayer
@@ -31,6 +32,7 @@ namespace Game
         private static AudioFileReader CrystalSound = new AudioFileReader(@"Sounds\Crystal.mp3");
         private static AudioFileReader GameOverMusic = new AudioFileReader(@"Sounds\Game_Over.mp3");
         private static AudioFileReader ParkSound = new AudioFileReader(@"Sounds\Park.mp3");
+        private static AudioFileReader JumpSound = new AudioFileReader(@"Sounds\Jump.mp3");
         private static List<AudioFileReader> Run = new List<AudioFileReader>
         { 
             new AudioFileReader(@"Sounds\Run_1.mp3"), 
@@ -110,6 +112,15 @@ namespace Game
                         CrystalSound.Position = 0;
                         FXplayer.Dispose();
                         FXplayer.Init(CrystalSound);
+                        FXplayer.Play();
+                        break;
+                    }
+                case SoundType.Jump:
+                    {
+                        JumpSound.Position = 0;
+                        JumpSound.Volume = 2f;
+                        FXplayer.Dispose();
+                        FXplayer.Init(JumpSound);
                         FXplayer.Play();
                         break;
                     }

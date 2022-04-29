@@ -27,7 +27,7 @@ namespace Game
         public Labels(GameModel level)
         {
             GameScoreLocation = new Point(level.windowSize.Width / 2 - 40, 0);
-            GameCrystalCountLocation = new Point(5 * level.windowSize.Width / 6, level.windowSize.Height / 30);
+            GameCrystalCountLocation = new Point(5 * level.windowSize.Width / 6, 0);
 
             GameOver_ScoreLocation = new Point(level.windowSize.Width / 2 + 40, level.windowSize.Height / 2 - 127);
             GameOver_BestScoreLocation = new Point(level.windowSize.Width / 2 + 40, level.windowSize.Height / 2 - 105);

@@ -30,10 +30,10 @@ namespace Game
             }
             AddElement(level, images["Background_Night_time"], 0, 0);
             AddElement(level, images["City_Night_ver"], 0, 0);
-            AddElement(level, images["_1_Layer_Trees_ver1"], images["_1_Layer_Trees_ver2"], x1, 0, windowSize, previousImages[0]);
-            AddElement(level, images["_2_Layer_Trees_ver1"], images["_2_Layer_Trees_ver2"], x2, 0, windowSize, previousImages[1]);
-            AddElement(level, images["Front_Bushes_1"], images["Front_Bushes_2"], x3, 0, windowSize, previousImages[2]);
-            AddElement(level, images["Road"], images["Road"], x4, 0, windowSize, previousImages[3]);
+            AddElement(level, new List<Bitmap> { images["_1_Layer_Trees_ver1"], images["_1_Layer_Trees_ver2"] }, x1, 0, windowSize, previousImages[0]);
+            AddElement(level, new List<Bitmap> { images["_2_Layer_Trees_ver1"], images["_2_Layer_Trees_ver2"], images["_2_Layer_Trees_ver3"] }, x2, 0, windowSize, previousImages[1]);
+            AddElement(level, new List<Bitmap> { images["Front_Bushes_1"], images["Front_Bushes_2"] }, x3, 0, windowSize, previousImages[2]);
+            AddElement(level, new List<Bitmap> { images["Road"], images["Road"] }, x4, 0, windowSize, previousImages[3]);
 
             foreach (var obstacle in obstacles)
             {
@@ -47,7 +47,7 @@ namespace Game
                 player.JumpAnimation.AnimatePlayer(windowSize, level);
             else
                 player.RunAnimation.AnimatePlayer(windowSize, level);
-            level.windowElements.Last().rectangle = new Rectangle((int)player.ActualLocation.X + player.Size.Width*3/7, (int)player.ActualLocation.Y + player.Size.Height*2/ 7, player.Size.Width/4, player.Size.Height*2/5);
+            level.windowElements.Last().rectangle = new Rectangle((int)player.ActualLocation.X + player.Size.Width*3/9, (int)player.ActualLocation.Y + player.Size.Height*2/ 9, player.Size.Width/4, player.Size.Height*2/5);
                 AddElement(level, images["Crystals_count"], 0, 0);
             RecalculateImagesPositions();
         }
@@ -82,18 +82,13 @@ namespace Game
             level.windowElements.Add(new WindowElement(location.X, location.Y, image, size));
         }
 
-        private void AddElement(GameModel level, Bitmap image1, Bitmap image2, double xPos, double yPos, Size size, Bitmap[] previousImages)
+        private void AddElement(GameModel level, List<Bitmap> images, double xPos, double yPos, Size size, Bitmap[] previousImages)
         {
-            Bitmap image;
-            if (random.Next() % 2 == 0)
-                image = image1;
-            else
-                image = image2;
-
+            var image = images[random.Next() % images.Count];
             if (IsFisrtFrame)
             {
-                level.windowElements.Add(new WindowElement(xPos, yPos, image1, size));
-                previousImages[0] = image1;
+                level.windowElements.Add(new WindowElement(xPos, yPos, images[0], size));
+                previousImages[0] = images[0];
             }
             else if (xPos == 0)
             {

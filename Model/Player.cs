@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Media;
@@ -20,15 +21,69 @@ namespace Game
 
         public Point SpawnLocation;
 
-        public Player(Size windowSize)
+        public Player(Size windowSize, int SkinNumber)
         {
             SpawnLocation = new Point(-120, windowSize.Height - windowSize.Height * 67 / 100);
             ActualLocation = SpawnLocation;
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
-            RunAnimation = new Animator(new ResourceManager(typeof(Resource2)));
-            JumpAnimation = new Animator(new ResourceManager(typeof(Resource5)));
-            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 7, 
-                ActualLocation.Y + Size.Height * 2 / 7, Size.Width / 4, Size.Height * 2 / 5);
+            RunAnimation = new Animator(RunSequence(SkinNumber));
+            JumpAnimation = new Animator(JumpSequence(SkinNumber));
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9, 
+                ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
+        }
+
+        private ResourceManager RunSequence(int SkinNumber)
+        {
+            switch (SkinNumber)
+            {
+                case 1:
+                    {
+                        return new ResourceManager(typeof(Resource2));
+                    }
+                case 2:
+                    {
+                        return new ResourceManager(typeof(Resource2));
+                    }
+                case 3:
+                    {
+                        return new ResourceManager(typeof(Resource2));
+                    }
+                case 4:
+                    {
+                        return new ResourceManager(typeof(Resource2));
+                    }
+                default:
+                    {
+                        return new ResourceManager(typeof(Resource2));
+                    }
+            }
+        }
+
+        private ResourceManager JumpSequence(int SkinNumber)
+        {
+            switch (SkinNumber)
+            {
+                case 1:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                case 2:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                case 3:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                case 4:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                default:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+            }
         }
 
         public enum TargetDirection
@@ -49,7 +104,9 @@ namespace Game
                 if (!IsJumping)
                     JumpAnimation.RestartAnimation();
                 IsJumping = true;
-                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 40);
+                if (timer == 0)
+                    timer++;
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - 80/Math.Abs(timer));
                 timer += 1;
             }
             else if (timer >= 7 && ActualLocation.Y <= Border)
@@ -77,7 +134,7 @@ namespace Game
                 if (ActualLocation.Y == Border)
                     timer = 0;
             }
-            else 
+            else
                 timer += 1;
             if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
             {
@@ -87,8 +144,8 @@ namespace Game
             {
                 ActualLocation = new Point(ActualLocation.X+10, ActualLocation.Y);
             }
-            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 7, 
-                ActualLocation.Y + Size.Height * 2 / 7, Size.Width / 4, Size.Height * 2 / 5);
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9, 
+                ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
     }
 }
