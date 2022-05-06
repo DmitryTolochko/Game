@@ -17,26 +17,29 @@ namespace Game
         public CustomLabel GameOver_ScoreLabel;
         public CustomLabel GameOver_BestScoreLabel;
 
-        public readonly Point GameScoreLocation;
-        public readonly Point GameCrystalCountLocation;
+        public readonly Point Game_ScoreLocation;
+        public readonly Point Game_CrystalCountLocation;
         public readonly Point GameOver_BestScoreLocation;
         public readonly Point GameOver_BestCrystalCountLocation;
         public readonly Point GameOver_ScoreLocation;
         public readonly Point GameOver_CrystalCountLocation;
+        public readonly Point Store_BestCrystalCountLocation;
 
         public Labels(GameModel level)
         {
-            GameScoreLocation = new Point(level.windowSize.Width / 2 - 40, 0);
-            GameCrystalCountLocation = new Point(5 * level.windowSize.Width / 6, 0);
+            Game_ScoreLocation = new Point(level.windowSize.Width / 2 - 40, 0);
+            Game_CrystalCountLocation = new Point(5 * level.windowSize.Width / 6, 0);
 
             GameOver_ScoreLocation = new Point(level.windowSize.Width / 2 + 40, level.windowSize.Height / 2 - 127);
             GameOver_BestScoreLocation = new Point(level.windowSize.Width / 2 + 40, level.windowSize.Height / 2 - 105);
             GameOver_CrystalCountLocation = new Point(level.windowSize.Width / 2 - 40, level.windowSize.Height / 2 - 80);
-            GameOver_BestCrystalCountLocation = new Point(level.windowSize.Width / 2 - 40, level.windowSize.Height / 2);            
+            GameOver_BestCrystalCountLocation = new Point(level.windowSize.Width / 2 - 40, level.windowSize.Height / 2);
 
-            ScoreLabel = new CustomLabel(level.Score.ToString(), GameScoreLocation, level.windowSize, Color.White, 40);
+            Store_BestCrystalCountLocation = new Point(200, level.windowSize.Height - 110);
+
+            ScoreLabel = new CustomLabel(level.Score.ToString(), Game_ScoreLocation, level.windowSize, Color.White, 40);
             BestScoreLabel = new CustomLabel(level.BestScore.ToString(), GameOver_BestScoreLocation, level.windowSize, Color.Black, 40);
-            CrystalCountLabel = new CustomLabel(level.CrystalCount.ToString(), GameCrystalCountLocation, level.windowSize, Color.Black, 40);
+            CrystalCountLabel = new CustomLabel(level.CrystalCount.ToString(), Game_CrystalCountLocation, level.windowSize, Color.Black, 40);
             BestCrystalCountLabel = new CustomLabel(level.BestCrystalCount.ToString(), GameOver_BestCrystalCountLocation, level.windowSize, Color.Black, 40);
 
             GameOver_ScoreLabel = new CustomLabel(level.Score.ToString(), GameOver_ScoreLocation, level.windowSize, Color.Black, 10);

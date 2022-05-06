@@ -16,13 +16,15 @@ namespace Game
     {
         public Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
         public static readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
-        private GameModel gameModel;
+        public GameModel gameModel;
         private Store store;
         private Menu menu;
         private readonly Timer timer = new Timer();
+        public Size WindowSize;
 
         public MainForm(Size windowSize)
         {
+            this.WindowSize = windowSize;
             DoubleBuffered = true;
             ClientSize = windowSize;
             gameModel = new GameModel(Controls, ClientSize);
@@ -107,6 +109,19 @@ namespace Game
             gameModel.KeyPressed = e.KeyCode;
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            if (gameModel != null)
+            {
+                gameModel.labels = new Labels(gameModel);
+                gameModel.buttons = new Buttons(gameModel, ClientSize);
+                store = new Store(ClientSize);
+                gameModel.IsFirstFrame = true;
+                menu.IsFirstFrame = true;
+            }
+        }
+
         protected override void OnKeyUp(KeyEventArgs e)
         {
             pressedKeys.Remove(e.KeyCode);
@@ -127,8 +142,8 @@ namespace Game
                     (float)windowElement.yPosition,
                     windowElement.Size.Width,
                     windowElement.Size.Height);
-                if (!windowElement.rectangle.IsEmpty)
-                    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
+                //if (!windowElement.rectangle.IsEmpty)
+                //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
             }
             ResumeLayout();
         }

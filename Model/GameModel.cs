@@ -16,7 +16,7 @@ namespace Game
         private SceneryGenerator sceneryGenerator;
         private ObstacleGenerator obstacleGenerator;
         public Player player;
-        private List<Obstacle> obstacles;
+        public List<Obstacle> obstacles;
         public List<Diamond> diamonds;
 
         public int BestScore;
@@ -26,6 +26,7 @@ namespace Game
         public int CrystalCount;
         public int SkinNumber;
         public int AcquiredSkins;
+        public double Acceleration;
 
         public Labels labels;
         public Buttons buttons;
@@ -62,11 +63,13 @@ namespace Game
             labels = new Labels(this);
             Controls.Add(labels.ScoreLabel);
             Controls.Add(labels.CrystalCountLabel);
+            Acceleration = 1;
         }
 
         public void NextFrame(ControlCollection Controls, Size windowSize, Dictionary<string, Bitmap> images)
         {
             this.windowSize = windowSize;
+            Acceleration += 0.0005;
             if (IsFirstFrame)
             {
                 Controls.Clear();
@@ -93,8 +96,8 @@ namespace Game
 
         private void UpdateScore(ControlCollection Controls)
         {
-            labels.ScoreLabel.Location = labels.GameScoreLocation;
-            labels.CrystalCountLabel.Location = labels.GameCrystalCountLocation;
+            labels.ScoreLabel.Location = labels.Game_ScoreLocation;
+            labels.CrystalCountLabel.Location = labels.Game_CrystalCountLocation;
             if (count != 10)
                 count += 1;
             else
@@ -120,16 +123,21 @@ namespace Game
 
         private void CheckCollision(Size windowSize)
         {
+            var flags = new HashSet<bool>();
             foreach (var obstacle in obstacles)
             {
                 if (Math.Abs(player.WorkSpace.Right - obstacle.WorkSpace.Left) <= 20 &&
                         (player.WorkSpace.Bottom > obstacle.WorkSpace.Top))
                     IsGameFinished = true;
-                if (player.WorkSpace.IntersectsWith(obstacle.WorkSpace) && !IsGameFinished)
-                    player.Border = player.Size.Height - obstacle.WorkSpace.Top;
-                else
-                    player.Border = player.SpawnLocation.Y;
+                if ((player.WorkSpace.IntersectsWith(obstacle.WorkSpace) ||
+                    player.WorkSpace.Contains(obstacle.WorkSpace)) &&
+                    obstacle.Name != "Manhole")
+                    flags.Add(true);
             }
+            if (flags.Any())
+                player.IsCollised = true;
+            else
+                player.IsCollised = false;
         }
 
         private void GenerateObstaclesAndCrystals()
@@ -142,7 +150,7 @@ namespace Game
             if (obstacles.Count > 0 && obstacles[0].ActualLocation.X < -windowSize.Width)
                 obstacles.RemoveAt(0);
             foreach (var obstacle in obstacles)
-                obstacle.Move(13, windowSize);
+                obstacle.Move(13, this);
 
             if (diamonds.Count == 0)
                 diamonds.Add(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height*3 / 1080))));
@@ -154,13 +162,10 @@ namespace Game
                     obstacles.Last().ActualLocation.Y - (int)(50 * 2.4 * windowSize.Height / 1080))));
                 obstacles.Last().HadCrystal = true;
             }
-            //else if (diamonds.Count < 6 && random.Next() % 15 == 0 && diamonds.Last().ActualLocation.X + diamonds.Last().Size.Width <= windowSize.Width)
-            //    diamonds.Add(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height / 1080))));
-
             if (diamonds.Count > 0 && diamonds[0].ActualLocation.X < -windowSize.Width)
                 diamonds.RemoveAt(0);
             foreach (var diamond in diamonds)
-                diamond.Move(13);
+                diamond.Move(13, this);
         }
 
         private void CheckDiamondCollision()

@@ -21,7 +21,6 @@ namespace Game
                 Controls.Add(level.buttons.PlayButton);
                 Controls.Add(level.buttons.GoToStoreButton);
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Background"], windowSize));
-                level.windowElements.Add(new WindowElement(0, 0, images["Menu_Background"], windowSize));
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Light_flash_1"], windowSize));
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Name"], windowSize));
             }
@@ -48,7 +47,6 @@ namespace Game
             {
                 MusicPlayer.Play(MusicType.GameOver, IsFirstFrame);
                 Controls.Clear();
-                level.windowElements.Clear();
                 Controls.Add(level.buttons.GameOverRecetButton);
                 Controls.Add(level.buttons.GameOverBackToMainMenuButton);
                 level.windowElements.Add(new WindowElement(0, 0, images["Game_Over_BG"], windowSize));

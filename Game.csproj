@@ -27,6 +27,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -96,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Store.cs" />
-    <Compile Include="Model\MusicPlayer.cs" />
+    <Compile Include="View\MusicPlayer.cs" />
     <Compile Include="Control\Labels.cs" />
     <Compile Include="Model\Diamond.cs" />
     <Compile Include="Resource3.Designer.cs">
@@ -113,6 +118,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource5.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource6.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource7.resx</DependentUpon>
     </Compile>
     <Compile Include="View\ObstacleGenerator.cs" />
     <Compile Include="Model\Obstacle.cs" />
@@ -168,6 +183,14 @@
     <EmbeddedResource Include="Resource5.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource5.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource6.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource6.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource7.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource7.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
@@ -426,9 +449,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Bycicle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Pulse%282%29.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sounds\Pulse.wav" />
@@ -708,6 +728,201 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\2 Layer Trees ver3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00009.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00018.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00025.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00026.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00027.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00028.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00030.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00032.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00033.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00034.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard Running_00035.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00007.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00008.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00009.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00010.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00011.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00013.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00014.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00017.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00018.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00020.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00022.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00023.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Richard-Jumping_00024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Character_Choised_00001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Character_Choised_00002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Character_Choised_00003.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Character_Choised_00004.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Character_Choised_00005.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,12 +11,15 @@ namespace Game
     {
         private Random random = new Random();
         private List<Bitmap> images = new List<Bitmap>();
+        private List<String> imagesNames = new List<string>();
 
         public void GetNewObstacle(List<Obstacle> obstacles, Size windowSize)
         {
             if (images.Count == 0)
                 GetImages();
-            obstacles.Add(new Obstacle(windowSize, images[random.Next() % images.Count]));
+            var index = random.Next() % images.Count;
+            obstacles.Add(new Obstacle(windowSize, images[index], imagesNames[index]));
+            
         }
 
         private void GetImages()
@@ -26,6 +29,7 @@ namespace Game
             foreach (DictionaryEntry entry in resourceSet)
             {
                 images.Add((Bitmap)entry.Value);
+                imagesNames.Add((string)entry.Key);
             }
         }
     }

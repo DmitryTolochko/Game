@@ -22,9 +22,9 @@ namespace Game
             Size = new Size((int)(50 * 2.4 * windowSize.Width / 1920), (int)(50 * 2.4 * windowSize.Height / 1080));
         }
 
-        public void Move(int speed)
+        public void Move(int speed, GameModel level)
         {
-            ActualLocation = new Point(ActualLocation.X - speed, ActualLocation.Y);
+            ActualLocation = new Point((int)(ActualLocation.X - speed*level.Acceleration), ActualLocation.Y);
         }
     }
 }

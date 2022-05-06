@@ -130,6 +130,21 @@
   <data name="Button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Character_Choised_00001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Choised_00001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Choised_00002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Choised_00002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Choised_00003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Choised_00003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Choised_00004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Choised_00004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Character_Choised_00005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Character_Choised_00005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Character_Opened_00001" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Character_Opened_00001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

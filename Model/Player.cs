@@ -18,6 +18,7 @@ namespace Game
         public Rectangle WorkSpace;
 
         public bool IsJumping = false;
+        public bool IsCollised = false;
 
         public Point SpawnLocation;
 
@@ -38,7 +39,7 @@ namespace Game
             {
                 case 1:
                     {
-                        return new ResourceManager(typeof(Resource2));
+                        return new ResourceManager(typeof(Resource6));
                     }
                 case 2:
                     {
@@ -65,7 +66,7 @@ namespace Game
             {
                 case 1:
                     {
-                        return new ResourceManager(typeof(Resource5));
+                        return new ResourceManager(typeof(Resource7));
                     }
                 case 2:
                     {
@@ -98,7 +99,7 @@ namespace Game
         {
             SpawnLocation = new Point(-120, windowSize.Height - windowSize.Height * 67 / 100);
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
-
+            Border = SpawnLocation.Y;
             if (timer < 7 && direction.Contains(TargetDirection.Up) && !(ActualLocation.Y < 0))
             {
                 if (!IsJumping)
@@ -109,7 +110,7 @@ namespace Game
                 ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - 80/Math.Abs(timer));
                 timer += 1;
             }
-            else if (timer >= 7 && ActualLocation.Y <= Border)
+            else if (timer >= 7 && ActualLocation.Y <= Border && !IsCollised)
             {
                 if (ActualLocation.Y + 30 >= Border)
                 {
@@ -117,11 +118,11 @@ namespace Game
                     IsJumping = false;
                 }
                 else
-                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30);
+                      ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30);
                 if (!direction.Contains(TargetDirection.Up))
                     timer = 0;
             }
-            else if (!direction.Contains(TargetDirection.Up) && ActualLocation.Y <= Border)
+            else if (!direction.Contains(TargetDirection.Up) && ActualLocation.Y <= Border && !IsCollised)
             {
                 timer--;
                 if (ActualLocation.Y + 30 >= Border)
@@ -136,6 +137,8 @@ namespace Game
             }
             else
                 timer += 1;
+            if (IsCollised && !direction.Contains(TargetDirection.Up))
+                timer = 0;
             if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
             {
                 ActualLocation = new Point(ActualLocation.X-15, ActualLocation.Y);

@@ -15,6 +15,7 @@ namespace Game
         private Random random = new Random();
         private List<Bitmap[]> previousImages = new List<Bitmap[]>();
         private bool IsFisrtFrame;
+        
 
         public void UpdateScenery(Size windowSize, GameModel level, Dictionary<string, Bitmap> images, bool IsFisrtFrame, Player player, List<Obstacle> obstacles, List<Diamond> diamonds)
         {
@@ -38,36 +39,40 @@ namespace Game
             foreach (var obstacle in obstacles)
             {
                 AddElement(level, obstacle.Image, obstacle.ActualLocation, obstacle.Size);
-                level.windowElements.Last().rectangle = new Rectangle(obstacle.ActualLocation.X+ obstacle.Size.Width/7, obstacle.ActualLocation.Y, obstacle.Size.Width - obstacle.Size.Width*2 / 7, obstacle.Size.Height);
+                level.windowElements.Last().rectangle = obstacle.WorkSpace;
             }
             foreach (var diamond in diamonds)
                 diamond.Animator.Animate(windowSize, level, diamond);
-
-            if (player.IsJumping)
-                player.JumpAnimation.AnimatePlayer(windowSize, level);
-            else
-                player.RunAnimation.AnimatePlayer(windowSize, level);
-            level.windowElements.Last().rectangle = new Rectangle((int)player.ActualLocation.X + player.Size.Width*3/9, (int)player.ActualLocation.Y + player.Size.Height*2/ 9, player.Size.Width/4, player.Size.Height*2/5);
-                AddElement(level, images["Crystals_count"], 0, 0);
-            RecalculateImagesPositions();
+            WindowElement playerAnim = null;
+            for (int i = 0; i < (int)level.Acceleration; i++)
+            {
+                if (player.IsJumping)
+                    playerAnim = player.JumpAnimation.AnimatePlayer(windowSize, level);
+                else
+                    playerAnim = player.RunAnimation.AnimatePlayer(windowSize, level);
+            }
+            level.windowElements.Add(playerAnim);
+            level.windowElements.Last().rectangle = player.WorkSpace;
+            AddElement(level, images["Crystals_count"], 0, 0);
+            RecalculateImagesPositions(level.Acceleration);
         }
 
-        private void RecalculateImagesPositions()
+        private void RecalculateImagesPositions(double acceleration)
         {
             if (x1 >= -windowSize.Width)
-                x1 -= windowSize.Width / 500;
+                x1 -= windowSize.Width * (int)acceleration / 500;
             else
                 x1 = 0;
             if (x2 >= -windowSize.Width)
-                x2 -= windowSize.Width / 300;
+                x2 -= windowSize.Width * (int)acceleration / 300;
             else
                 x2 = 0;
             if (x3 >= -windowSize.Width)
-                x3 -= windowSize.Width / 200;
+                x3 -= windowSize.Width * (int)acceleration / 200;
             else
                 x3 = 0;
             if (x4 >= -windowSize.Width)
-                x4 -= windowSize.Width / 100;
+                x4 -= windowSize.Width * (int)acceleration / 100;
             else
                 x4 = 0;
         }
