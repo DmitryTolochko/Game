@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using ImageProcessor;
+using ImageProcessor.Common;
+using ImageProcessor.Imaging.Formats;
 
 namespace Game
 {
@@ -12,17 +18,19 @@ namespace Game
         private double x2 = 0;
         private double x3 = 0;
         private double x4 = 0;
-        private Random random = new Random();
-        private List<Bitmap[]> previousImages = new List<Bitmap[]>();
+        private int transparenсy = 100;
+        private bool IsADay = true;
+        private readonly Random random = new Random();
+        private readonly List<Bitmap[]> previousImages = new List<Bitmap[]>();
         private bool IsFisrtFrame;
-        
 
-        public void UpdateScenery(Size windowSize, GameModel level, Dictionary<string, Bitmap> images, bool IsFisrtFrame, Player player, List<Obstacle> obstacles, List<Diamond> diamonds)
+        public void UpdateScenery(Size windowSize, GameModel level, Dictionary<string, Bitmap> images, 
+            bool IsFirstFrame, Player player, List<Obstacle> obstacles, List<Diamond> diamonds)
         {
             this.windowSize = windowSize;
-            this.IsFisrtFrame = IsFisrtFrame;
+            this.IsFisrtFrame = IsFirstFrame;
             level.windowElements.Clear();
-            if (previousImages.Count() == 0)
+            if (previousImages.Count == 0)
             {
                 previousImages.Add(new Bitmap[2]);
                 previousImages.Add(new Bitmap[2]);
@@ -30,6 +38,11 @@ namespace Game
                 previousImages.Add(new Bitmap[2]);
             }
             AddElement(level, images["Background_Night_time"], 0, 0);
+            //var bitmap = Parallel.For(0, 1, abc(images["Background_Day_time"]).);
+            //var bitmap = abc(images["Background_Day_time"]);
+            //Thread.Sleep(1);
+            //Task.WaitAll(bitmap);
+            //AddElement(level, bitmap, 0, 0);
             AddElement(level, images["City_Night_ver"], 0, 0);
             AddElement(level, new List<Bitmap> { images["_1_Layer_Trees_ver1"], images["_1_Layer_Trees_ver2"] }, x1, 0, windowSize, previousImages[0]);
             AddElement(level, new List<Bitmap> { images["_2_Layer_Trees_ver1"], images["_2_Layer_Trees_ver2"], images["_2_Layer_Trees_ver3"] }, x2, 0, windowSize, previousImages[1]);
@@ -46,7 +59,9 @@ namespace Game
             WindowElement playerAnim = null;
             for (int i = 0; i < (int)level.Acceleration; i++)
             {
-                if (player.IsJumping)
+                if (player.IsCollised)
+                    playerAnim = player.DriftAnimation.AnimatePlayer(windowSize, level);
+                else if (player.IsJumping)
                     playerAnim = player.JumpAnimation.AnimatePlayer(windowSize, level);
                 else
                     playerAnim = player.RunAnimation.AnimatePlayer(windowSize, level);
@@ -55,6 +70,21 @@ namespace Game
             level.windowElements.Last().rectangle = player.WorkSpace;
             AddElement(level, images["Crystals_count"], 0, 0);
             RecalculateImagesPositions(level.Acceleration);
+        }
+
+        private Bitmap abc(Bitmap input)
+        {
+            using (MemoryStream outStream = new MemoryStream())
+            {
+                using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                {
+                    imageFactory.Load(input)
+                        .Alpha(transparenсy)
+                        .Save(outStream);
+                    imageFactory.Dispose();
+                }
+                return new Bitmap(outStream);
+            }
         }
 
         private void RecalculateImagesPositions(double acceleration)
@@ -75,6 +105,20 @@ namespace Game
                 x4 -= windowSize.Width * (int)acceleration / 100;
             else
                 x4 = 0;
+
+            if (transparenсy > 0 && IsADay)
+            {
+                transparenсy -= 1;
+            }
+            if (transparenсy < 100 && !IsADay)
+            {
+                transparenсy += 1;
+            }
+            if (transparenсy == 100 || transparenсy == 0)
+            {
+                IsADay = IsADay ? false : true;
+            }
+
         }
 
         private void AddElement(GameModel level, Bitmap image, double dx, double dy)

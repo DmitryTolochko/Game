@@ -146,7 +146,7 @@ namespace Game
                 {
                     //choice.ChangeSize(windowSize);
                     InitializeSkins(choice, level);
-                    BuySkin(choice, level, Controls);
+                    BuySkin(choice, level);
                     MakeAChoise(choice, level);
                     choice.IsChosen = false;
                 }
@@ -154,7 +154,7 @@ namespace Game
             IsFirstFrame = false;
         }
 
-        private void BuySkin(ScoreChoice choice, GameModel level, ControlCollection Controls)
+        private void BuySkin(ScoreChoice choice, GameModel level)
         {
             if (choice.IsChosen && !choice.IsAcquired)
             {

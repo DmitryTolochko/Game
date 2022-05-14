@@ -9,9 +9,9 @@ namespace Game
 {
     class ObstacleGenerator
     {
-        private Random random = new Random();
-        private List<Bitmap> images = new List<Bitmap>();
-        private List<String> imagesNames = new List<string>();
+        private readonly Random random = new Random();
+        private readonly List<Bitmap> images = new List<Bitmap>();
+        private readonly List<String> imagesNames = new List<string>();
 
         public void GetNewObstacle(List<Obstacle> obstacles, Size windowSize)
         {

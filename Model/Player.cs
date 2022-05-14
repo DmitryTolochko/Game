@@ -11,6 +11,7 @@ namespace Game
     {
         public Animator RunAnimation;
         public Animator JumpAnimation;
+        public Animator DriftAnimation;
         public Point ActualLocation;
         public Size Size;
         public int Border;
@@ -29,6 +30,7 @@ namespace Game
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
             RunAnimation = new Animator(RunSequence(SkinNumber));
             JumpAnimation = new Animator(JumpSequence(SkinNumber));
+            DriftAnimation = new Animator(DriftSequence(SkinNumber));
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9, 
                 ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
@@ -71,6 +73,33 @@ namespace Game
                 case 2:
                     {
                         return new ResourceManager(typeof(Resource5));
+                    }
+                case 3:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                case 4:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+                default:
+                    {
+                        return new ResourceManager(typeof(Resource5));
+                    }
+            }
+        }
+
+        private ResourceManager DriftSequence(int SkinNumber)
+        {
+            switch (SkinNumber)
+            {
+                case 1:
+                    {
+                        return new ResourceManager(typeof(Resource7));
+                    }
+                case 2:
+                    {
+                        return new ResourceManager(typeof(Resource8));
                     }
                 case 3:
                     {
@@ -130,6 +159,8 @@ namespace Game
                     ActualLocation = new Point(ActualLocation.X, Border);
                     IsJumping = false;
                 }
+                //else if (timer != 0)
+                //    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30 + 50 / Math.Abs(timer));
                 else
                     ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30);
                 if (ActualLocation.Y == Border)

@@ -9,7 +9,7 @@ namespace Game
 {
     public class Animator
     {
-        private Bitmap[] Animation;
+        private readonly Bitmap[] Animation;
         private int countFrame;
 
         public Animator(ResourceManager resourceManager)
@@ -44,6 +44,15 @@ namespace Game
         public void Animate(Size windowSize, GameModel level, Diamond diamond)
         {
             level.windowElements.Add(new WindowElement(diamond.ActualLocation.X, diamond.ActualLocation.Y, Animation[countFrame], diamond.Size));
+            if (countFrame != Animation.Length - 1)
+                countFrame++;
+            else
+                countFrame = 0;
+        }
+
+        public void Animate(Size size, GameModel level, Point location)
+        {
+            level.windowElements.Add(new WindowElement(location.X, location.Y, Animation[countFrame], size));
             if (countFrame != Animation.Length - 1)
                 countFrame++;
             else

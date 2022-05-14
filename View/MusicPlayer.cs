@@ -25,25 +25,25 @@ namespace Game
 
     public static class MusicPlayer
     {
-        private static WaveOutEvent player = new WaveOutEvent();
-        private static WaveOutEvent FXplayer = new WaveOutEvent();
-        private static WaveOutEvent ParkPlayer = new WaveOutEvent();
+        private readonly static WaveOutEvent player = new WaveOutEvent();
+        private readonly static WaveOutEvent FXplayer = new WaveOutEvent();
+        private readonly static WaveOutEvent ParkPlayer = new WaveOutEvent();
 
-        private static AudioFileReader MainMenuMusic = new AudioFileReader(@"Sounds\MainMenu.wav");
-        private static AudioFileReader GameMusic = new AudioFileReader(@"Sounds\Pulse.wav");
-        private static AudioFileReader CrystalSound = new AudioFileReader(@"Sounds\Crystal.mp3");
-        private static AudioFileReader GameOverMusic = new AudioFileReader(@"Sounds\Game_Over.mp3");
-        private static AudioFileReader ParkSound = new AudioFileReader(@"Sounds\Park.mp3");
-        private static AudioFileReader JumpSound = new AudioFileReader(@"Sounds\Jump.mp3");
-        private static AudioFileReader StoreBuySound = new AudioFileReader(@"Sounds\Buy.mp3");
-        private static AudioFileReader StoreChoiceSound = new AudioFileReader(@"Sounds\Choice.mp3");
-        private static List<AudioFileReader> Run = new List<AudioFileReader>
+        private readonly static AudioFileReader MainMenuMusic = new AudioFileReader(@"Sounds\MainMenu.wav");
+        private readonly static AudioFileReader GameMusic = new AudioFileReader(@"Sounds\Pulse.wav");
+        private readonly static AudioFileReader CrystalSound = new AudioFileReader(@"Sounds\Crystal.mp3");
+        private readonly static AudioFileReader GameOverMusic = new AudioFileReader(@"Sounds\Game_Over.mp3");
+        private readonly static AudioFileReader ParkSound = new AudioFileReader(@"Sounds\Park.mp3");
+        private readonly static AudioFileReader JumpSound = new AudioFileReader(@"Sounds\Jump.mp3");
+        private readonly static AudioFileReader StoreBuySound = new AudioFileReader(@"Sounds\Buy.mp3");
+        private readonly static AudioFileReader StoreChoiceSound = new AudioFileReader(@"Sounds\Choice.mp3");
+        private readonly static List<AudioFileReader> Run = new List<AudioFileReader>
         { 
             new AudioFileReader(@"Sounds\Run_1.mp3"), 
             new AudioFileReader(@"Sounds\Run_2.mp3"), 
             new AudioFileReader(@"Sounds\Run_3.mp3")
         };
-        private static Random random = new Random();
+        private readonly static Random random = new Random();
 
         public static void Play(MusicType musicType, bool isFirstFrame)
         {

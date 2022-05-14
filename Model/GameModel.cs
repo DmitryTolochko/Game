@@ -13,8 +13,8 @@ namespace Game
 {
     public class GameModel
     {
-        private SceneryGenerator sceneryGenerator;
-        private ObstacleGenerator obstacleGenerator;
+        private readonly SceneryGenerator sceneryGenerator;
+        private readonly ObstacleGenerator obstacleGenerator;
         public Player player;
         public List<Obstacle> obstacles;
         public List<Diamond> diamonds;
@@ -84,7 +84,7 @@ namespace Game
             }
             windowElements.Clear();
             Controller.KeyController(this);
-            CheckCollision(windowSize);
+            CheckCollision();
             GenerateObstaclesAndCrystals();
             CheckDiamondCollision();
             sceneryGenerator.UpdateScenery(windowSize, this, images, IsFirstFrame, player, obstacles, diamonds);
@@ -121,7 +121,7 @@ namespace Game
             Controls.Add(labels.CrystalCountLabel);
         }
 
-        private void CheckCollision(Size windowSize)
+        private void CheckCollision()
         {
             var flags = new HashSet<bool>();
             foreach (var obstacle in obstacles)

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Globalization;
 using System.Media;
 using System.Drawing.Text;
+using AForge.Video;
 
 namespace Game
 {
@@ -18,7 +19,7 @@ namespace Game
         public static readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         public GameModel gameModel;
         private Store store;
-        private Menu menu;
+        private readonly Menu menu;
         private readonly Timer timer = new Timer();
         public Size WindowSize;
 
@@ -59,6 +60,7 @@ namespace Game
             {
                 menu.IsFirstFrame = true;
                 gameModel = new GameModel(Controls, ClientSize) { BackToMenu = false };
+                GC.Collect();
             }
             else if (gameModel.IsGameResumed)
             {
@@ -94,6 +96,8 @@ namespace Game
                     gameModel.IsGameFinished = false;
             }
         }
+
+        
 
         private void GetImages()
         {
@@ -146,6 +150,7 @@ namespace Game
                 //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
             }
             ResumeLayout();
+            //GC.Collect();
         }
     }
 }
