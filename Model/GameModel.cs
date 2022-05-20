@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Media;
-using System.Reflection;
 using System.Windows.Forms;
 using static System.Windows.Forms.Control;
-using static Game.MainForm;
 
 namespace Game
 {
@@ -43,7 +40,7 @@ namespace Game
         public bool IsFirstFrame = true;
         public bool GoToStore = false;
 
-        public GameModel(ControlCollection Controls, Size windowSize)
+        public GameModel(ControlCollection Controls, Size windowSize, Dictionary<string, Bitmap> images, SceneryGenerator sceneryGenerator)
         {
             this.windowSize = windowSize;
             StreamReader stream = new StreamReader(@"Data.txt");
@@ -53,9 +50,10 @@ namespace Game
             AcquiredSkins = int.Parse(stream.ReadLine());
             player = new Player(windowSize, SkinNumber);
             stream.Close();
-            sceneryGenerator = new SceneryGenerator();
+            this.sceneryGenerator = sceneryGenerator;
+            sceneryGenerator.ResetScenery();
             obstacleGenerator = new ObstacleGenerator();
-            buttons = new Buttons(this,  windowSize);
+            buttons = new Buttons(this);
             obstacles = new List<Obstacle>();
             diamonds = new List<Diamond>();
             Controls.Clear();
@@ -63,7 +61,7 @@ namespace Game
             labels = new Labels(this);
             Controls.Add(labels.ScoreLabel);
             Controls.Add(labels.CrystalCountLabel);
-            Acceleration = 1;
+            Acceleration = 1.5;
         }
 
         public void NextFrame(ControlCollection Controls, Size windowSize, Dictionary<string, Bitmap> images)
@@ -87,7 +85,9 @@ namespace Game
             CheckCollision();
             GenerateObstaclesAndCrystals();
             CheckDiamondCollision();
-            sceneryGenerator.UpdateScenery(windowSize, this, images, IsFirstFrame, player, obstacles, diamonds);
+            lock(windowElements)
+                lock(images)
+                    sceneryGenerator.UpdateScenery(windowSize, this, IsFirstFrame, player, obstacles, diamonds);
             UpdateScore(Controls);
             MusicPlayer.Play(MusicType.Game, IsFirstFrame);
             MusicPlayer.Play(MusicType.Park, IsFirstFrame);
@@ -124,6 +124,7 @@ namespace Game
         private void CheckCollision()
         {
             var flags = new HashSet<bool>();
+            var border = 0;
             foreach (var obstacle in obstacles)
             {
                 if (Math.Abs(player.WorkSpace.Right - obstacle.WorkSpace.Left) <= 20 &&
@@ -132,12 +133,22 @@ namespace Game
                 if ((player.WorkSpace.IntersectsWith(obstacle.WorkSpace) ||
                     player.WorkSpace.Contains(obstacle.WorkSpace)) &&
                     obstacle.Name != "Manhole")
+                {
                     flags.Add(true);
+                    border = player.WorkSpace.Bottom - obstacle.WorkSpace.Top - 1;
+                    break;
+                }
             }
             if (flags.Any())
+            {
                 player.IsCollised = true;
+                player.Border = border;
+            }
             else
+            {
                 player.IsCollised = false;
+                player.Border = player.SpawnLocation.Y;
+            }
         }
 
         private void GenerateObstaclesAndCrystals()

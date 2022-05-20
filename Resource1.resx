@@ -220,6 +220,9 @@
   <data name="Game_pause_button_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Game pause button up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Instruction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Instruction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Menu_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Menu Background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

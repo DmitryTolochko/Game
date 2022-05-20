@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Game
 {
@@ -20,7 +15,7 @@ namespace Game
         {
             Image = image;
             Name = name;
-            Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920), 
+            Size = new Size((int)(Image.Width * 2.4 * windowSize.Width / 1920),
                 (int)(Image.Height * 2.4 * windowSize.Height / 1080));
             ActualLocation = new Point(windowSize.Width + image.Width, windowSize.Height - Size.Height);
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
@@ -30,8 +25,17 @@ namespace Game
         {
             Size = new Size((int)(Image.Width * 2.4 * level.windowSize.Width / 1920),
                 (int)(Image.Height * 2.4 * level.windowSize.Height / 1080));
-            ActualLocation = new Point((int)(ActualLocation.X - (int)speed *level.Acceleration), level.windowSize.Height - Size.Height);
+            ActualLocation = new Point(
+                (int)(ActualLocation.X - (int)speed * level.Acceleration),
+                level.windowSize.Height - Size.Height);
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width / 7, ActualLocation.Y, Size.Width - Size.Width * 2 / 7, Size.Height);
+        }
+
+        public void OnResize(GameModel level)
+        {
+            ActualLocation = new Point(
+                ActualLocation.X * level.windowSize.Width / 1366, 
+                ActualLocation.Y * level.windowSize.Height / 768);
         }
     }
 }

@@ -20,7 +20,8 @@ namespace Game
         Crystal,
         Jump,
         StoreBuy,
-        StoreChoice
+        StoreChoice,
+        Button
     }
 
     public static class MusicPlayer
@@ -37,6 +38,7 @@ namespace Game
         private readonly static AudioFileReader JumpSound = new AudioFileReader(@"Sounds\Jump.mp3");
         private readonly static AudioFileReader StoreBuySound = new AudioFileReader(@"Sounds\Buy.mp3");
         private readonly static AudioFileReader StoreChoiceSound = new AudioFileReader(@"Sounds\Choice.mp3");
+        private readonly static AudioFileReader ButtonSound = new AudioFileReader(@"Sounds\button_hover.mp3");
         private readonly static List<AudioFileReader> Run = new List<AudioFileReader>
         { 
             new AudioFileReader(@"Sounds\Run_1.mp3"), 
@@ -144,6 +146,15 @@ namespace Game
                         StoreChoiceSound.Volume = 1.6f;
                         FXplayer.Dispose();
                         FXplayer.Init(StoreChoiceSound);
+                        FXplayer.Play();
+                        break;
+                    }
+                case SoundType.Button:
+                    {
+                        ButtonSound.Position = 0;
+                        ButtonSound.Volume = 1.6f;
+                        FXplayer.Dispose();
+                        FXplayer.Init(ButtonSound);
                         FXplayer.Play();
                         break;
                     }

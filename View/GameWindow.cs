@@ -7,9 +7,9 @@ using System.Windows.Forms;
 using System.Resources;
 using System.Collections;
 using System.Globalization;
-using System.Media;
-using System.Drawing.Text;
-using AForge.Video;
+using System.Threading.Tasks;
+using ImageProcessor;
+using ImageProcessor.Imaging;
 
 namespace Game
 {
@@ -18,20 +18,22 @@ namespace Game
         public Dictionary<string, Bitmap> images = new Dictionary<string, Bitmap>();
         public static readonly HashSet<Keys> pressedKeys = new HashSet<Keys>();
         public GameModel gameModel;
-        private Store store;
+        public Store store;
         private readonly Menu menu;
         private readonly Timer timer = new Timer();
         public Size WindowSize;
+        private readonly SceneryGenerator sceneryGenerator;
 
         public MainForm(Size windowSize)
         {
             this.WindowSize = windowSize;
             DoubleBuffered = true;
             ClientSize = windowSize;
-            gameModel = new GameModel(Controls, ClientSize);
+            GetImages();
+            sceneryGenerator = new SceneryGenerator(images);
+            gameModel = new GameModel(Controls, ClientSize, images, sceneryGenerator);
             store = new Store(ClientSize);
             menu = new Menu();            
-            GetImages();
             timer.Interval = 16;
             timer.Tick += TimerTick;
             timer.Start();
@@ -59,7 +61,7 @@ namespace Game
             else if (gameModel.Reset)
             {
                 menu.IsFirstFrame = true;
-                gameModel = new GameModel(Controls, ClientSize) { BackToMenu = false };
+                gameModel = new GameModel(Controls, ClientSize, images, sceneryGenerator) { BackToMenu = false };
                 GC.Collect();
             }
             else if (gameModel.IsGameResumed)
@@ -86,7 +88,7 @@ namespace Game
                 gameModel.NextFrame(Controls, ClientSize, images);
                 menu.IsFirstFrame = true;
             }
-            Invalidate();
+            Task.Run(() => Invalidate());
             if ((gameModel.IsGamePaused || gameModel.IsGameFinished) && gameModel.BackToMenu)
             {
                 menu.IsFirstFrame = true;
@@ -96,8 +98,6 @@ namespace Game
                     gameModel.IsGameFinished = false;
             }
         }
-
-        
 
         private void GetImages()
         {
@@ -118,11 +118,15 @@ namespace Game
             base.OnResize(e);
             if (gameModel != null)
             {
+                if (ClientSize.Width / 1366 > 1)
+                    gameModel.Acceleration *= ClientSize.Width / 1366;
+                gameModel.windowSize = ClientSize;
                 gameModel.labels = new Labels(gameModel);
-                gameModel.buttons = new Buttons(gameModel, ClientSize);
+                gameModel.buttons = new Buttons(gameModel);
                 store = new Store(ClientSize);
                 gameModel.IsFirstFrame = true;
                 menu.IsFirstFrame = true;
+                gameModel.player.OnResize(gameModel);
             }
         }
 
@@ -139,18 +143,21 @@ namespace Game
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             SuspendLayout();
-            foreach (var windowElement in gameModel.windowElements)
-            {
-                g.DrawImage(windowElement.Image,
-                    (float)windowElement.xPosition,
-                    (float)windowElement.yPosition,
-                    windowElement.Size.Width,
-                    windowElement.Size.Height);
-                //if (!windowElement.rectangle.IsEmpty)
-                //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
-            }
+            lock (gameModel.windowElements)
+                lock (images)
+                    foreach (var windowElement in gameModel.windowElements.AsParallel())
+                    {
+                        g.Flush();
+                        g.DrawImage(windowElement.Image,
+                            (float)windowElement.xPosition,
+                            (float)windowElement.yPosition,
+                            windowElement.Size.Width,
+                            windowElement.Size.Height);
+                        //if (!windowElement.rectangle.IsEmpty)
+                        //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
+                    }
             ResumeLayout();
-            //GC.Collect();
+            
         }
     }
 }

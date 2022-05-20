@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Media;
 using System.Resources;
 
 namespace Game
@@ -14,9 +12,9 @@ namespace Game
         public Animator DriftAnimation;
         public Point ActualLocation;
         public Size Size;
-        public int Border;
         private int timer = 0;
         public Rectangle WorkSpace;
+        public int Border;
 
         public bool IsJumping = false;
         public bool IsCollised = false;
@@ -31,8 +29,14 @@ namespace Game
             RunAnimation = new Animator(RunSequence(SkinNumber));
             JumpAnimation = new Animator(JumpSequence(SkinNumber));
             DriftAnimation = new Animator(DriftSequence(SkinNumber));
-            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9, 
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9,
                 ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
+            Border = SpawnLocation.Y;
+        }
+
+        public void OnResize(GameModel level)
+        {
+            ActualLocation = new Point(ActualLocation.X* level.windowSize.Width / 1366, ActualLocation.Y * level.windowSize.Height/768);
         }
 
         private ResourceManager RunSequence(int SkinNumber)
@@ -118,51 +122,91 @@ namespace Game
 
         public enum TargetDirection
         {
-            Up, 
-            Left, 
+            Up,
+            Left,
             Right,
             Nowhere
         }
 
         public void MoveTo(List<TargetDirection> direction, Size windowSize)
         {
-            SpawnLocation = new Point(-120, windowSize.Height - windowSize.Height * 67 / 100);
+            SpawnLocation = new Point(-120 * windowSize.Width / 1366, windowSize.Height - windowSize.Height * 67 / 100);
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
-            Border = SpawnLocation.Y;
+            ChangeYPos(direction, windowSize);
+
+            if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
+                ActualLocation = new Point(ActualLocation.X - 15, ActualLocation.Y);
+            if (direction.Contains(TargetDirection.Right) && ActualLocation.X + Size.Width <= windowSize.Width)
+                ActualLocation = new Point(ActualLocation.X + 10, ActualLocation.Y);
+            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9,
+                ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
+        }
+
+        private int branchNum;
+        public int Time;
+        public int Acceleration = 10;
+
+        private void ChangeYPos(List<TargetDirection> direction, Size windowSize)
+        {
             if (timer < 7 && direction.Contains(TargetDirection.Up) && !(ActualLocation.Y < 0))
             {
+                if (branchNum != 1)
+                {
+                    branchNum = 1;
+                    Time = 1;
+                }
+                else
+                    Time++;
                 if (!IsJumping)
                     JumpAnimation.RestartAnimation();
                 IsJumping = true;
                 if (timer == 0)
                     timer++;
-                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - 80/Math.Abs(timer));
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - 80 / Math.Abs(Time));
                 timer += 1;
+            }
+            else if (IsCollised && Border != -1)
+            {
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - Border);
             }
             else if (timer >= 7 && ActualLocation.Y <= Border && !IsCollised)
             {
-                if (ActualLocation.Y + 30 >= Border)
+                if (branchNum != 2)
+                {
+                    branchNum = 2;
+                    Time = 1;
+                }
+                else
+                    Time++;
+                var dy = Acceleration * Time;
+                if (ActualLocation.Y + dy >= Border)
                 {
                     ActualLocation = new Point(ActualLocation.X, Border);
                     IsJumping = false;
                 }
                 else
-                      ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30);
+                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
                 if (!direction.Contains(TargetDirection.Up))
                     timer = 0;
             }
             else if (!direction.Contains(TargetDirection.Up) && ActualLocation.Y <= Border && !IsCollised)
             {
+                if (branchNum != 2)
+                {
+                    branchNum = 2;
+                    Time = 1;
+                }
+                else
+                    Time++;
                 timer--;
-                if (ActualLocation.Y + 30 >= Border)
+                var dy = Acceleration * Time;
+                if (ActualLocation.Y + dy >= Border)
                 {
                     ActualLocation = new Point(ActualLocation.X, Border);
                     IsJumping = false;
                 }
-                //else if (timer != 0)
-                //    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30 + 50 / Math.Abs(timer));
                 else
-                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + 30);
+                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
                 if (ActualLocation.Y == Border)
                     timer = 0;
             }
@@ -170,16 +214,6 @@ namespace Game
                 timer += 1;
             if (IsCollised && !direction.Contains(TargetDirection.Up))
                 timer = 0;
-            if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
-            {
-                ActualLocation = new Point(ActualLocation.X-15, ActualLocation.Y);
-            }
-            if (direction.Contains(TargetDirection.Right) && ActualLocation.X + Size.Width <= windowSize.Width)
-            {
-                ActualLocation = new Point(ActualLocation.X+10, ActualLocation.Y);
-            }
-            WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9, 
-                ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
     }
 }

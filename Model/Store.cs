@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.Control;
 
@@ -33,7 +30,7 @@ namespace Game
             Unplugged = UnpluggedButton;
             Plugged = PluggedButton;
             Choised = ChoisedButton;
-            
+
             button.Image = new Bitmap(Unplugged, new Size(
                 windowSize.Width * Unplugged.Width / 1960,
                 windowSize.Height * Unplugged.Height / 1080));
@@ -46,7 +43,8 @@ namespace Game
             button.FlatAppearance.MouseDownBackColor = Color.Transparent;
             button.Enabled = false;
             button.Click += (s, args) => IsChosen = true;
-            button.Text = cost.ToString();
+            button.Font = new Font("Abril Fatface", 20, FontStyle.Regular);
+            button.ForeColor = Color.White;
 
             label.Text = text;
             label.Location = new Point(button.Location.X, button.Bottom);
@@ -54,20 +52,11 @@ namespace Game
             label.FlatStyle = FlatStyle.Flat;
             label.BackColor = Color.Transparent;
             label.ForeColor = Color.Black;
-            label.Font = new Font("Abril Fatface", 40, FontStyle.Regular);
+            label.Font = new Font("Abril Fatface", 40 * windowSize.Width / 1366, FontStyle.Regular);
             label.Size = new Size(windowSize.Width / 5, windowSize.Height / 10);
 
             Size = new Size(button.Width, button.Height + label.Height);
         }
-
-        //public void ChangeSize(Size windowSize)
-        //{
-        //    button.Image = new Bitmap(button.Image, new Size(
-        //        windowSize.Width * Unplugged.Width / 1960,
-        //        windowSize.Height * Unplugged.Height / 1080));
-        //    button.Size = button.Image.Size;
-        //    Size = new Size(button.Width, button.Height + label.Height);
-        //}
     }
 
     public class Store
@@ -77,46 +66,46 @@ namespace Game
 
         public Store(Size windowSize)
         {
-            scoreChoices.Add(new ScoreChoice(1, 
-                new Point(0, 0), 
-                Resource1.Character_Opened_00001, 
-                Resource1.Character_Unopened_00001, 
+            scoreChoices.Add(new ScoreChoice(1,
+                new Point(0, 0),
+                Resource1.Character_Opened_00001,
+                Resource1.Character_Unopened_00001,
                 Resource1.Character_Choised_00001,
-                windowSize, 
-                "Richard" , 
-                100));
-            scoreChoices.Add(new ScoreChoice(2, 
-                new Point((int)(scoreChoices.Last().ActualLocation.X  + scoreChoices.Last().Size.Width*1.5), 0), 
-                Resource1.Character_Opened_00002, 
-                Resource1.Character_Opened_00002, 
-                Resource1.Character_Choised_00002, 
-                windowSize, 
-                "Wilson", 
+                windowSize,
+                "Richard",
+                1000));
+            scoreChoices.Add(new ScoreChoice(2,
+                new Point((int)(scoreChoices.Last().ActualLocation.X + scoreChoices.Last().Size.Width * 1.5), 0),
+                Resource1.Character_Opened_00002,
+                Resource1.Character_Opened_00002,
+                Resource1.Character_Choised_00002,
+                windowSize,
+                "Wilson",
                 0));
-            scoreChoices.Add(new ScoreChoice(3, 
-                new Point((int)(scoreChoices.Last().ActualLocation.X + scoreChoices.Last().Size.Width * 1.5), 0), 
-                Resource1.Character_Opened_00003, 
-                Resource1.Character_Unopened_00003, 
-                Resource1.Character_Choised_00003, 
-                windowSize, 
-                "Mom", 
-                1000));
-            scoreChoices.Add(new ScoreChoice(4, 
-                new Point(scoreChoices[0].ActualLocation.X, scoreChoices.Last().ActualLocation.Y + scoreChoices.Last().Size.Height), 
-                Resource1.Character_Opened_00004, 
-                Resource1.Character_Unopened_00004, 
-                Resource1.Character_Choised_00004, 
-                windowSize, 
-                "Butler", 
-                1000));
-            scoreChoices.Add(new ScoreChoice(5, 
-                new Point(scoreChoices[1].ActualLocation.X, scoreChoices.Last().ActualLocation.Y), 
-                Resource1.Character_Opened_00005, 
-                Resource1.Character_Unopened_00005, 
-                Resource1.Character_Choised_00005, 
-                windowSize, 
-                "Marvin", 
-                1000));
+            scoreChoices.Add(new ScoreChoice(3,
+                new Point((int)(scoreChoices.Last().ActualLocation.X + scoreChoices.Last().Size.Width * 1.5), 0),
+                Resource1.Character_Opened_00003,
+                Resource1.Character_Unopened_00003,
+                Resource1.Character_Choised_00003,
+                windowSize,
+                "Mom",
+                2500));
+            scoreChoices.Add(new ScoreChoice(4,
+                new Point(scoreChoices[0].ActualLocation.X, scoreChoices.Last().ActualLocation.Y + scoreChoices.Last().Size.Height),
+                Resource1.Character_Opened_00004,
+                Resource1.Character_Unopened_00004,
+                Resource1.Character_Choised_00004,
+                windowSize,
+                "Butler",
+                3000));
+            scoreChoices.Add(new ScoreChoice(5,
+                new Point(scoreChoices[1].ActualLocation.X, scoreChoices.Last().ActualLocation.Y),
+                Resource1.Character_Opened_00005,
+                Resource1.Character_Unopened_00005,
+                Resource1.Character_Choised_00005,
+                windowSize,
+                "Marvin",
+                5000));
 
         }
 
@@ -134,7 +123,12 @@ namespace Game
                 level.windowElements.Add(new WindowElement(0, 0, images["Crystals"], windowSize));
                 foreach (var choice in scoreChoices)
                 {
-                    //choice.ChangeSize(windowSize);
+                    choice.label.Font = new Font("Abril Fatface", 40 * windowSize.Width / 1366, FontStyle.Regular);
+                    choice.label.Size = new Size(windowSize.Width / 5, windowSize.Height / 10);
+                    if (!level.AcquiredSkins.ToString().Contains(choice.SkinNumber.ToString()))
+                        choice.button.Text = choice.Cost.ToString();
+                    else
+                        choice.button.Text = null;
                     Controls.Add(choice.button);
                     Controls.Add(choice.label);
                     choice.IsChosen = false;
@@ -144,7 +138,6 @@ namespace Game
             {
                 foreach (var choice in scoreChoices)
                 {
-                    //choice.ChangeSize(windowSize);
                     InitializeSkins(choice, level);
                     BuySkin(choice, level);
                     MakeAChoise(choice, level);
@@ -160,12 +153,12 @@ namespace Game
             {
                 choice.button.Image = new Bitmap(choice.Plugged, choice.button.Image.Size);
                 level.BestCrystalCount -= choice.Cost;
+                level.labels.BestCrystalCountLabel.Text = level.BestCrystalCount.ToString();
                 choice.IsAcquired = true;
                 level.AcquiredSkins = int.Parse(level.AcquiredSkins.ToString() + choice.SkinNumber.ToString());
                 choice.IsChosen = false;
                 IsFirstFrame = true;
                 MusicPlayer.Play(SoundType.StoreBuy);
-
                 StreamWriter file = new StreamWriter(@"Data.txt");
                 file.WriteLine(level.BestScore);
                 file.WriteLine(level.BestCrystalCount);

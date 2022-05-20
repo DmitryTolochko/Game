@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Media;
 using static System.Windows.Forms.Control;
-using static Game.GameModel;
 
 namespace Game
 {

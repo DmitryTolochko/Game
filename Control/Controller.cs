@@ -12,29 +12,14 @@ namespace Game
         {
             targetDirections = new List<TargetDirection>();
             if (pressedKeys.Contains(Keys.Space))
-            {
                 targetDirections.Add(TargetDirection.Up);
-                //pressedKeys.Remove(Keys.Space);
-            }
             if (pressedKeys.Contains(Keys.D))
-            {
                 targetDirections.Add(TargetDirection.Right);
-            }
             if (pressedKeys.Contains(Keys.A))
-            {
                 targetDirections.Add(TargetDirection.Left);
-            }
-            if (!pressedKeys.Contains(Keys.Space) &&
-                !pressedKeys.Contains(Keys.D) &&
-                !pressedKeys.Contains(Keys.A))
-            {
-                targetDirections.Add(TargetDirection.Nowhere);
-            }
             level.player.MoveTo(targetDirections, level.windowSize);
             if (pressedKeys.Contains(Keys.Escape))
-            {
                 level.IsGamePaused = true;
-            }
         }
     }
 }

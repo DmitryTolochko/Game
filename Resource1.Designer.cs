@@ -453,6 +453,16 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Instruction {
+            get {
+                object obj = ResourceManager.GetObject("Instruction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Menu_Background {
             get {
                 object obj = ResourceManager.GetObject("Menu_Background", resourceCulture);

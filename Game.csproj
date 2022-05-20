@@ -129,11 +129,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundSequence.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BackgroundSequence.resx</DependentUpon>
-    </Compile>
     <Compile Include="Model\Store.cs" />
     <Compile Include="Resource8.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -211,10 +206,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BackgroundSequence.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>BackgroundSequence.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resource3.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
@@ -962,6 +953,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Instruction.png" />
     <None Include="Resources\drifting_00016.png" />
     <None Include="Resources\drifting_00015.png" />
     <None Include="Resources\drifting_00014.png" />
