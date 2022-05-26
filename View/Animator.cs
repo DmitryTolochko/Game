@@ -37,18 +37,9 @@ namespace Game
                 Animation[countFrame], new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100));
         }
 
-        public void Animate(Size windowSize, GameModel level, Diamond diamond)
+        public void AnimateDiamond(Size windowSize, GameModel level, Diamond diamond)
         {
             level.windowElements.Add(new WindowElement(diamond.ActualLocation.X, diamond.ActualLocation.Y, Animation[countFrame], diamond.Size));
-            if (countFrame != Animation.Length - 1)
-                countFrame++;
-            else
-                countFrame = 0;
-        }
-
-        public void Animate(Size size, GameModel level, Point location)
-        {
-            level.windowElements.Add(new WindowElement(location.X, location.Y, Animation[countFrame], size));
             if (countFrame != Animation.Length - 1)
                 countFrame++;
             else

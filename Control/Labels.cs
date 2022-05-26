@@ -93,7 +93,7 @@ namespace Game
             BackColor = Color.Transparent;
             ForeColor = color;
             Font = new Font("Abril Fatface", FontSize * windowSize.Width / 1366, FontStyle.Regular);
-            Size = new Size(windowSize.Width / 5, windowSize.Height / 10);
+            AutoSize = true;
         }
     }
 }

@@ -129,11 +129,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Store.cs" />
+    <Compile Include="View\Store.cs" />
     <Compile Include="Resource8.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource8.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource9.resx</DependentUpon>
     </Compile>
     <Compile Include="View\MusicPlayer.cs" />
     <Compile Include="Control\Labels.cs" />
@@ -229,6 +234,10 @@
     <EmbeddedResource Include="Resource8.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource8.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource9.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource9.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
@@ -953,6 +962,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Volume_100.png" />
+    <None Include="Resources\Volume_50.png" />
+    <None Include="Resources\Volume_0.png" />
+    <None Include="Resources\Richard_Drifting_00024.png" />
+    <None Include="Resources\Richard_Drifting_00023.png" />
+    <None Include="Resources\Richard_Drifting_00022.png" />
+    <None Include="Resources\Richard_Drifting_00021.png" />
+    <None Include="Resources\Richard_Drifting_00020.png" />
+    <None Include="Resources\Richard_Drifting_00019.png" />
+    <None Include="Resources\Richard_Drifting_00018.png" />
+    <None Include="Resources\Richard_Drifting_00017.png" />
+    <None Include="Resources\Richard_Drifting_00016.png" />
+    <None Include="Resources\Richard_Drifting_00015.png" />
+    <None Include="Resources\Richard_Drifting_00014.png" />
+    <None Include="Resources\Richard_Drifting_00013.png" />
+    <None Include="Resources\Richard_Drifting_00012.png" />
+    <None Include="Resources\Richard_Drifting_00011.png" />
+    <None Include="Resources\Richard_Drifting_00010.png" />
+    <None Include="Resources\Richard_Drifting_00009.png" />
+    <None Include="Resources\Richard_Drifting_00008.png" />
+    <None Include="Resources\Richard_Drifting_00007.png" />
+    <None Include="Resources\Richard_Drifting_00006.png" />
+    <None Include="Resources\Richard_Drifting_00005.png" />
+    <None Include="Resources\Richard_Drifting_00004.png" />
+    <None Include="Resources\Richard_Drifting_00003.png" />
+    <None Include="Resources\Richard_Drifting_00002.png" />
+    <None Include="Resources\Richard_Drifting_00001.png" />
     <None Include="Resources\Instruction.png" />
     <None Include="Resources\drifting_00016.png" />
     <None Include="Resources\drifting_00015.png" />

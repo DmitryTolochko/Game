@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using NAudio.Wave;
 
 namespace Game
@@ -26,9 +27,11 @@ namespace Game
 
     public static class MusicPlayer
     {
-        private readonly static WaveOutEvent player = new WaveOutEvent();
-        private readonly static WaveOutEvent FXplayer = new WaveOutEvent();
-        private readonly static WaveOutEvent ParkPlayer = new WaveOutEvent();
+        public static Bitmap VolumeImage = Resource1.Volume_100;
+
+        private readonly static WaveOutEvent player = new WaveOutEvent { Volume = 1 };
+        private readonly static WaveOutEvent FXplayer = new WaveOutEvent { Volume = 1 };
+        private readonly static WaveOutEvent ParkPlayer = new WaveOutEvent { Volume = 1 };
 
         private readonly static AudioFileReader MainMenuMusic = new AudioFileReader(@"Sounds\MainMenu.wav");
         private readonly static AudioFileReader GameMusic = new AudioFileReader(@"Sounds\Pulse.wav");
@@ -159,6 +162,32 @@ namespace Game
                         break;
                     }
             }
+        }
+
+        public static Bitmap ChangeVolume()
+        {
+            if (player.Volume == 0)
+            {
+                player.Volume = 1;
+                FXplayer.Volume = 1;
+                ParkPlayer.Volume = 1;
+                VolumeImage = Resource1.Volume_100;
+                return VolumeImage;
+            }
+            else if (player.Volume == 1)
+            {
+                player.Volume = 0.5f;
+                FXplayer.Volume = 0.5f;
+                ParkPlayer.Volume = 0.5f;
+            }
+            else
+            {
+                player.Volume = 0;
+                FXplayer.Volume = 0;
+                ParkPlayer.Volume = 0;
+            }
+            VolumeImage = player.Volume == 0 ? Resource1.Volume_0 : Resource1.Volume_50;
+            return VolumeImage;
         }
     }
 }

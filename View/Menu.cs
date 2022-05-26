@@ -17,6 +17,7 @@ namespace Game
                 Controls.Add(level.buttons.ExitButton);
                 Controls.Add(level.buttons.PlayButton);
                 Controls.Add(level.buttons.GoToStoreButton);
+                Controls.Add(level.buttons.VolumeButton);
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Background"], windowSize));
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Light_flash_1"], windowSize));
                 level.windowElements.Add(new WindowElement(0, 0, images["Menu_Name"], windowSize));
@@ -33,6 +34,7 @@ namespace Game
                 Controls.Add(level.buttons.PauseBackToMainMenuButton);
                 Controls.Add(level.buttons.ResumeButton);
                 Controls.Add(level.buttons.PauseRecetButton);
+                Controls.Add(level.buttons.VolumeButton);
                 level.windowElements.Add(new WindowElement(0, 0, images["Pause_Background"], windowSize));
                 IsFirstFrame = false;
             }

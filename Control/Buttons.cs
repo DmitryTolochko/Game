@@ -14,6 +14,7 @@ namespace Game
         public CustomButton PauseBackToMainMenuButton;
         public CustomButton GameOverBackToMainMenuButton;
         public CustomButton GoToStoreButton;
+        public CustomButton VolumeButton;
 
         public Buttons(GameModel gameModel)
         {
@@ -102,6 +103,22 @@ namespace Game
             GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.IsGameStarted = false;
             GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.GoToStore = false;
             GameOverBackToMainMenuButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+
+            var image = MusicPlayer.VolumeImage;
+            VolumeButton = new CustomButton(
+                new Point(10 * gameModel.windowSize.Width / 1366, 
+                gameModel.windowSize.Height - 46 * gameModel.windowSize.Height/768),
+                image,
+                image,
+                gameModel.windowSize);
+            VolumeButton.Click += (s, a) =>
+            {
+                MusicPlayer.Play(SoundType.Button);
+                var imageNew = CustomButton.ResizedImage(gameModel.windowSize, MusicPlayer.ChangeVolume());
+                VolumeButton.Image = imageNew;
+                VolumeButton.GotFocus += (sender, args) => VolumeButton.Image = imageNew;
+                VolumeButton.LostFocus += (sender, args) => VolumeButton.Image = imageNew;
+            };
         }
     }
 
@@ -121,7 +138,7 @@ namespace Game
             Size = new Size(Image.Width, Image.Height);
         }
 
-        private Bitmap ResizedImage(Size windowSize, Bitmap bitmap)
+        public static Bitmap ResizedImage(Size windowSize, Bitmap bitmap)
         {
             return new Bitmap(bitmap, new Size(windowSize.Width * bitmap.Width / 1960,
                 windowSize.Height * bitmap.Height / 1080));

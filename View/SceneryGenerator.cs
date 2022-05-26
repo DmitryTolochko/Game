@@ -144,7 +144,7 @@ namespace Game
         private void UpdateCrystals(GameModel level, List<Diamond> crystals)
         {
             foreach (var crystal in crystals)
-                crystal.Animator.Animate(windowSize, level, crystal);
+                crystal.Animator.AnimateDiamond(windowSize, level, crystal);
         }
 
         private void UpdateSky(GameModel level)
@@ -209,7 +209,6 @@ namespace Game
             {
                 isADay = isADay ? false : true;
             }
-
         }
 
         private void AddElement(GameModel level, Bitmap image, double dx, double dy)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Resources;
 
 namespace Game
@@ -10,16 +11,23 @@ namespace Game
         public Animator RunAnimation;
         public Animator JumpAnimation;
         public Animator DriftAnimation;
-        public Point ActualLocation;
+        
         public Size Size;
-        private int timer = 0;
         public Rectangle WorkSpace;
         public int Border;
 
         public bool IsJumping = false;
         public bool IsCollised = false;
 
+        public Point ActualLocation;
         public Point SpawnLocation;
+
+        private int timer = 0;
+        private int branchNum;
+        public int Time;
+        public int Acceleration = 10;
+        public int JumpCount;
+        private bool LastSpaceClick = false;
 
         public Player(Size windowSize, int SkinNumber)
         {
@@ -36,6 +44,9 @@ namespace Game
 
         public void OnResize(GameModel level)
         {
+            var windowSize = level.windowSize;
+            SpawnLocation = new Point(-120 * windowSize.Width / 1366, windowSize.Height - windowSize.Height * 67 / 100);
+            Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
             ActualLocation = new Point(ActualLocation.X* level.windowSize.Width / 1366, ActualLocation.Y * level.windowSize.Height/768);
         }
 
@@ -99,7 +110,7 @@ namespace Game
             {
                 case 1:
                     {
-                        return new ResourceManager(typeof(Resource7));
+                        return new ResourceManager(typeof(Resource9));
                     }
                 case 2:
                     {
@@ -130,8 +141,6 @@ namespace Game
 
         public void MoveTo(List<TargetDirection> direction, Size windowSize)
         {
-            SpawnLocation = new Point(-120 * windowSize.Width / 1366, windowSize.Height - windowSize.Height * 67 / 100);
-            Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
             ChangeYPos(direction, windowSize);
 
             if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
@@ -142,14 +151,20 @@ namespace Game
                 ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
 
-        private int branchNum;
-        public int Time;
-        public int Acceleration = 10;
-
         private void ChangeYPos(List<TargetDirection> direction, Size windowSize)
         {
+            if (LastSpaceClick == false && direction.Contains(TargetDirection.Up))
+                JumpCount++;
+            if (direction.Contains(TargetDirection.Up))
+                LastSpaceClick = true;
+            else 
+                LastSpaceClick = false;
+            if (JumpCount > 2)
+                direction.Remove(TargetDirection.Up);
             if (timer < 7 && direction.Contains(TargetDirection.Up) && !(ActualLocation.Y < 0))
             {
+                if (JumpCount > 2)
+                    JumpCount++;
                 if (branchNum != 1)
                 {
                     branchNum = 1;
@@ -208,12 +223,18 @@ namespace Game
                 else
                     ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
                 if (ActualLocation.Y == Border)
+                {
                     timer = 0;
+                }
             }
             else
                 timer += 1;
             if (IsCollised && !direction.Contains(TargetDirection.Up))
+            {
                 timer = 0;
+            }
+            if (ActualLocation.Y == Border && !direction.Contains(TargetDirection.Up) && !LastSpaceClick)
+                JumpCount = 0;
         }
     }
 }

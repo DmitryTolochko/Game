@@ -31,6 +31,9 @@ namespace Game
 
         public void OnResize(GameModel level)
         {
+            Size = new Size(
+                (int)(50 * 2.4 * level.windowSize.Width / 1920),
+                (int)(50 * 2.4 * level.windowSize.Height / 1080));
             ActualLocation = new Point(
                 ActualLocation.X * level.windowSize.Width / 1366, 
                 ActualLocation.Y * level.windowSize.Height / 768);

@@ -8,8 +8,6 @@ using System.Resources;
 using System.Collections;
 using System.Globalization;
 using System.Threading.Tasks;
-using ImageProcessor;
-using ImageProcessor.Imaging;
 
 namespace Game
 {
@@ -26,7 +24,9 @@ namespace Game
 
         public MainForm(Size windowSize)
         {
-            this.WindowSize = windowSize;
+            //FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            //StartPosition = FormStartPosition.CenterScreen;
+            this.WindowSize = new Size (windowSize.Width*ClientSize.Width/2560, windowSize.Height*ClientSize.Height/1440);
             DoubleBuffered = true;
             ClientSize = windowSize;
             GetImages();
@@ -157,7 +157,6 @@ namespace Game
                         //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
                     }
             ResumeLayout();
-            
         }
     }
 }
