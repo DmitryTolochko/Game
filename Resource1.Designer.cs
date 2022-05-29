@@ -383,6 +383,26 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Continue_Button_Down {
+            get {
+                object obj = ResourceManager.GetObject("Continue_Button_Down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Continue_Button_Up {
+            get {
+                object obj = ResourceManager.GetObject("Continue_Button_Up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Crystals {
             get {
                 object obj = ResourceManager.GetObject("Crystals", resourceCulture);

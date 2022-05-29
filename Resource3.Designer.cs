@@ -63,6 +63,16 @@ namespace Game {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Banana {
+            get {
+                object obj = ResourceManager.GetObject("Banana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bench {
             get {
                 object obj = ResourceManager.GetObject("Bench", resourceCulture);
@@ -76,6 +86,16 @@ namespace Game {
         internal static System.Drawing.Bitmap Bycicle {
             get {
                 object obj = ResourceManager.GetObject("Bycicle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dirt {
+            get {
+                object obj = ResourceManager.GetObject("Dirt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

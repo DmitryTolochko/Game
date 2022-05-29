@@ -31,6 +31,7 @@ namespace Game
 
         public Player(Size windowSize, int SkinNumber)
         {
+            //Acceleration *= windowSize.Height / 768;
             SpawnLocation = new Point(-120, windowSize.Height - windowSize.Height * 67 / 100);
             ActualLocation = SpawnLocation;
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
@@ -72,7 +73,7 @@ namespace Game
                     }
                 default:
                     {
-                        return new ResourceManager(typeof(Resource2));
+                        return new ResourceManager(typeof(Resource10));
                     }
             }
         }
@@ -99,7 +100,7 @@ namespace Game
                     }
                 default:
                     {
-                        return new ResourceManager(typeof(Resource5));
+                        return new ResourceManager(typeof(Resource11));
                     }
             }
         }
@@ -126,7 +127,7 @@ namespace Game
                     }
                 default:
                     {
-                        return new ResourceManager(typeof(Resource5));
+                        return new ResourceManager(typeof(Resource12));
                     }
             }
         }
@@ -139,7 +140,7 @@ namespace Game
             Nowhere
         }
 
-        public void MoveTo(List<TargetDirection> direction, Size windowSize)
+        public void MoveTo(HashSet<TargetDirection> direction, Size windowSize)
         {
             ChangeYPos(direction, windowSize);
 
@@ -151,7 +152,7 @@ namespace Game
                 ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
 
-        private void ChangeYPos(List<TargetDirection> direction, Size windowSize)
+        private void ChangeYPos(HashSet<TargetDirection> direction, Size windowSize)
         {
             if (LastSpaceClick == false && direction.Contains(TargetDirection.Up))
                 JumpCount++;
@@ -177,7 +178,7 @@ namespace Game
                 IsJumping = true;
                 if (timer == 0)
                     timer++;
-                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - 80 / Math.Abs(Time));
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - Acceleration * 8 / Math.Abs(Time));
                 timer += 1;
             }
             else if (IsCollised && Border != -1)

@@ -22,7 +22,8 @@ namespace Game
         Jump,
         StoreBuy,
         StoreChoice,
-        Button
+        Button,
+        Banana
     }
 
     public static class MusicPlayer
@@ -42,6 +43,7 @@ namespace Game
         private readonly static AudioFileReader StoreBuySound = new AudioFileReader(@"Sounds\Buy.mp3");
         private readonly static AudioFileReader StoreChoiceSound = new AudioFileReader(@"Sounds\Choice.mp3");
         private readonly static AudioFileReader ButtonSound = new AudioFileReader(@"Sounds\button_hover.mp3");
+        private readonly static AudioFileReader BananaSound = new AudioFileReader(@"Sounds\Banana.mp3");
         private readonly static List<AudioFileReader> Run = new List<AudioFileReader>
         { 
             new AudioFileReader(@"Sounds\Run_1.mp3"), 
@@ -158,6 +160,14 @@ namespace Game
                         ButtonSound.Volume = 1.6f;
                         FXplayer.Dispose();
                         FXplayer.Init(ButtonSound);
+                        FXplayer.Play();
+                        break;
+                    }
+                case SoundType.Banana:
+                    {
+                        BananaSound.Position = 0;
+                        FXplayer.Dispose();
+                        FXplayer.Init(BananaSound);
                         FXplayer.Play();
                         break;
                     }

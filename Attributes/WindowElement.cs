@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+﻿using System.Drawing;
 
 namespace Game
 {
@@ -13,9 +7,9 @@ namespace Game
         public readonly double yPosition;
         public readonly double xPosition;
         public readonly Bitmap Image;
-        public readonly Size Size;
+        public readonly SizeF Size;
         public Rectangle rectangle;
-        public WindowElement (double x, double y, Bitmap image, Size size)
+        public WindowElement (double x, double y, Bitmap image, SizeF size)
         {
             yPosition = y;
             xPosition = x;

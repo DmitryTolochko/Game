@@ -13,14 +13,16 @@ namespace Game
         private readonly List<Bitmap> images = new List<Bitmap>();
         private readonly List<string> imagesNames = new List<string>();
 
-        public void GetNewObstacle(List<Obstacle> obstacles, Size windowSize)
+        public void GetNewObstacle(GameModel gameModel)
         {
             if (images.Count == 0)
                 GetImages();
             var index = random.Next() % images.Count;
-            obstacles.Add(new Obstacle(windowSize, images[index], imagesNames[index]));
-            
+            while (imagesNames[index] == "Dirt" && gameModel.Acceleration < 3)
+                index = random.Next() % images.Count;
+            gameModel.obstacles.Add(new Obstacle(gameModel.windowSize, images[index], imagesNames[index]));
         }
+
 
         private void GetImages()
         {

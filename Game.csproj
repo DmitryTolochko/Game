@@ -12,6 +12,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,11 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,45 +54,12 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <HintPath>packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <HintPath>packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <HintPath>packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageProcessor, Version=2.9.1.225, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ImageProcessor.2.9.1\lib\net452\ImageProcessor.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualC" />
-    <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio, Version=2.0.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.2.0.1\lib\netstandard2.0\NAudio.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.Asio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.Asio.2.0.0\lib\netstandard2.0\NAudio.Asio.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.Core.2.0.0\lib\netstandard2.0\NAudio.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.Midi, Version=2.0.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.Midi.2.0.1\lib\netstandard2.0\NAudio.Midi.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.Wasapi, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.Wasapi.2.0.0\lib\netstandard2.0\NAudio.Wasapi.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.WinForms, Version=2.0.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.WinForms.2.0.1\lib\net472\NAudio.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio.WinMM, Version=2.0.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
-      <HintPath>packages\NAudio.WinMM.2.0.1\lib\netstandard2.0\NAudio.WinMM.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -103,18 +70,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.ServiceModel.Discovery" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
@@ -129,6 +87,26 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomIcon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomIcon.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource10.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource11.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource12.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource12.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\Store.cs" />
     <Compile Include="Resource8.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -196,7 +174,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource2.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,6 +188,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CustomIcon.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomIcon.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource10.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource10.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource11.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource11.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource12.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource12.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource3.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
@@ -962,6 +955,93 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Dirt.png" />
+    <None Include="Resources\Continue_Button_Up.png" />
+    <None Include="Resources\Continue_Button_Down.png" />
+    <None Include="Resources\Banana.png" />
+    <None Include="Resources\Marving_drifting_00024.png" />
+    <None Include="Resources\Marving_drifting_00023.png" />
+    <None Include="Resources\Marving_drifting_00022.png" />
+    <None Include="Resources\Marving_drifting_00021.png" />
+    <None Include="Resources\Marving_drifting_00020.png" />
+    <None Include="Resources\Marving_drifting_00019.png" />
+    <None Include="Resources\Marving_drifting_00018.png" />
+    <None Include="Resources\Marving_drifting_00017.png" />
+    <None Include="Resources\Marving_drifting_00016.png" />
+    <None Include="Resources\Marving_drifting_00015.png" />
+    <None Include="Resources\Marving_drifting_00014.png" />
+    <None Include="Resources\Marving_drifting_00013.png" />
+    <None Include="Resources\Marving_drifting_00012.png" />
+    <None Include="Resources\Marving_drifting_00011.png" />
+    <None Include="Resources\Marving_drifting_00010.png" />
+    <None Include="Resources\Marving_drifting_00009.png" />
+    <None Include="Resources\Marving_drifting_00008.png" />
+    <None Include="Resources\Marving_drifting_00007.png" />
+    <None Include="Resources\Marving_drifting_00006.png" />
+    <None Include="Resources\Marving_drifting_00005.png" />
+    <None Include="Resources\Marving_drifting_00004.png" />
+    <None Include="Resources\Marving_drifting_00003.png" />
+    <None Include="Resources\Marving_drifting_00002.png" />
+    <None Include="Resources\Marving_drifting_00001.png" />
+    <None Include="Resources\Marvin_jumping_00017.png" />
+    <None Include="Resources\Marvin_jumping_00016.png" />
+    <None Include="Resources\Marvin_jumping_00015.png" />
+    <None Include="Resources\Marvin_jumping_00014.png" />
+    <None Include="Resources\Marvin_jumping_00013.png" />
+    <None Include="Resources\Marvin_jumping_00012.png" />
+    <None Include="Resources\Marvin_jumping_00011.png" />
+    <None Include="Resources\Marvin_jumping_00010.png" />
+    <None Include="Resources\Marvin_jumping_00009.png" />
+    <None Include="Resources\Marvin_jumping_00008.png" />
+    <None Include="Resources\Marvin_jumping_00007.png" />
+    <None Include="Resources\Marvin_jumping_00006.png" />
+    <None Include="Resources\Marvin_jumping_00005.png" />
+    <None Include="Resources\Marvin_jumping_00004.png" />
+    <None Include="Resources\Marvin_jumping_00003.png" />
+    <None Include="Resources\Marvin_jumping_00002.png" />
+    <None Include="Resources\Marvin_jumping_00001.png" />
+    <None Include="Resources\Marvin_jumping_00024.png" />
+    <None Include="Resources\Marvin_jumping_00023.png" />
+    <None Include="Resources\Marvin_jumping_00022.png" />
+    <None Include="Resources\Marvin_jumping_00021.png" />
+    <None Include="Resources\Marvin_jumping_00020.png" />
+    <None Include="Resources\Marvin_jumping_00019.png" />
+    <None Include="Resources\Marvin_jumping_00018.png" />
+    <None Include="Resources\Marvin_running_00035.png" />
+    <None Include="Resources\Marvin_running_00034.png" />
+    <None Include="Resources\Marvin_running_00033.png" />
+    <None Include="Resources\Marvin_running_00032.png" />
+    <None Include="Resources\Marvin_running_00031.png" />
+    <None Include="Resources\Marvin_running_00030.png" />
+    <None Include="Resources\Marvin_running_00029.png" />
+    <None Include="Resources\Marvin_running_00028.png" />
+    <None Include="Resources\Marvin_running_00027.png" />
+    <None Include="Resources\Marvin_running_00026.png" />
+    <None Include="Resources\Marvin_running_00025.png" />
+    <None Include="Resources\Marvin_running_00024.png" />
+    <None Include="Resources\Marvin_running_00023.png" />
+    <None Include="Resources\Marvin_running_00022.png" />
+    <None Include="Resources\Marvin_running_00021.png" />
+    <None Include="Resources\Marvin_running_00020.png" />
+    <None Include="Resources\Marvin_running_00019.png" />
+    <None Include="Resources\Marvin_running_00018.png" />
+    <None Include="Resources\Marvin_running_00017.png" />
+    <None Include="Resources\Marvin_running_00016.png" />
+    <None Include="Resources\Marvin_running_00015.png" />
+    <None Include="Resources\Marvin_running_00014.png" />
+    <None Include="Resources\Marvin_running_00013.png" />
+    <None Include="Resources\Marvin_running_00012.png" />
+    <None Include="Resources\Marvin_running_00011.png" />
+    <None Include="Resources\Marvin_running_00010.png" />
+    <None Include="Resources\Marvin_running_00009.png" />
+    <None Include="Resources\Marvin_running_00008.png" />
+    <None Include="Resources\Marvin_running_00007.png" />
+    <None Include="Resources\Marvin_running_00006.png" />
+    <None Include="Resources\Marvin_running_00005.png" />
+    <None Include="Resources\Marvin_running_00004.png" />
+    <None Include="Resources\Marvin_running_00003.png" />
+    <None Include="Resources\Marvin_running_00002.png" />
+    <None Include="Resources\Marvin_running_00001.png" />
     <None Include="Resources\Volume_100.png" />
     <None Include="Resources\Volume_50.png" />
     <None Include="Resources\Volume_0.png" />
@@ -1007,6 +1087,14 @@
     <None Include="Resources\drifting_00002.png" />
     <None Include="Resources\drifting_00001.png" />
     <None Include="Resources\BG.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ImageProcessor">
+      <Version>2.9.1</Version>
+    </PackageReference>
+    <PackageReference Include="NAudio">
+      <Version>2.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

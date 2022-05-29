@@ -18,7 +18,7 @@ namespace Game
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(new Size(1366, 768)));
+            Application.Run(new MainForm());
             //WindowState = FormWindowState.Maximized
         }
     }

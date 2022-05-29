@@ -29,16 +29,17 @@ namespace Game
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.SuspendLayout();
             // 
-            // GameWindow
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "GameWindow";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "MainForm";
             this.Text = "GameWindow";
-            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameWindow_Paint);
             this.ResumeLayout(false);
 
         }

@@ -48,6 +48,8 @@ namespace Game
                 Controls.Clear();
                 Controls.Add(level.buttons.GameOverRecetButton);
                 Controls.Add(level.buttons.GameOverBackToMainMenuButton);
+                if  (level.BestCrystalCount >= 300)
+                    Controls.Add(level.buttons.ResumeForDiamonds);
                 level.windowElements.Add(new WindowElement(0, 0, images["Game_Over_BG"], windowSize));
 
                 Controls.Add(level.labels.BestCrystalCountLabel);

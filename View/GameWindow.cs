@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.Resources;
 using System.Collections;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace Game
 {
@@ -22,13 +21,14 @@ namespace Game
         public Size WindowSize;
         private readonly SceneryGenerator sceneryGenerator;
 
-        public MainForm(Size windowSize)
+        public MainForm()
         {
-            //FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            //StartPosition = FormStartPosition.CenterScreen;
-            this.WindowSize = new Size (windowSize.Width*ClientSize.Width/2560, windowSize.Height*ClientSize.Height/1440);
+            Icon = CustomIcon.Icon;
+            FormBorderStyle = FormBorderStyle.None;
+            StartPosition = FormStartPosition.CenterScreen;
+            Size resolution = Screen.PrimaryScreen.Bounds.Size;
+            Size = new Size(resolution.Width * 1366/2560, resolution.Height * 768/1440);
             DoubleBuffered = true;
-            ClientSize = windowSize;
             GetImages();
             sceneryGenerator = new SceneryGenerator(images);
             gameModel = new GameModel(Controls, ClientSize, images, sceneryGenerator);
@@ -88,7 +88,7 @@ namespace Game
                 gameModel.NextFrame(Controls, ClientSize, images);
                 menu.IsFirstFrame = true;
             }
-            Task.Run(() => Invalidate());
+            Invalidate();
             if ((gameModel.IsGamePaused || gameModel.IsGameFinished) && gameModel.BackToMenu)
             {
                 menu.IsFirstFrame = true;
@@ -139,22 +139,22 @@ namespace Game
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             SuspendLayout();
             lock (gameModel.windowElements)
                 lock (images)
-                    foreach (var windowElement in gameModel.windowElements.AsParallel())
+                    foreach (var windowElement in gameModel.windowElements)
                     {
                         g.Flush();
                         g.DrawImage(windowElement.Image,
-                            (float)windowElement.xPosition,
-                            (float)windowElement.yPosition,
+                            (int)windowElement.xPosition,
+                            (int)windowElement.yPosition,
                             windowElement.Size.Width,
                             windowElement.Size.Height);
-                        //if (!windowElement.rectangle.IsEmpty)
-                        //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
+                        if (!windowElement.rectangle.IsEmpty)
+                            g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
                     }
             ResumeLayout();
         }

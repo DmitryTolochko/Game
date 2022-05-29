@@ -128,7 +128,8 @@ namespace Game
         private void UpdatePlayer(GameModel level, Player player)
         {
             WindowElement playerAnim = null;
-            for (int i = 0; i < (int)level.Acceleration; i++)
+            var count = (int)level.Acceleration <= 1 ? 1 : (int)level.Acceleration;
+            for (int i = 0; i < count; i++)
             {
                 if (player.IsCollised)
                     playerAnim = player.DriftAnimation.AnimatePlayer(windowSize, level);
@@ -159,7 +160,7 @@ namespace Game
                 else
                     cl.Add(cloud[0]);
             }
-            AddElement(level, cl, x3, 0, new Size(cl[0].Size.Width*3, cl[0].Size.Height*3), previousImages[4]);
+            AddElement(level, cl, x3, 0, new Size(cl[0].Size.Width*3*level.windowSize.Width/1366, cl[0].Size.Height*3*level.windowSize.Height/768), previousImages[4]);
             AddElement(level, images["City_Day_ver"], 0, 0);
             AddElement(level, citySequence[(int)transparenсy], 0, 0);
         }
@@ -177,23 +178,23 @@ namespace Game
         private void RecalculateImagesPositions(double acceleration)
         {
             if (x1 >= -windowSize.Width)
-                x1 -= windowSize.Width * (int)acceleration / 500;
+                x1 -= windowSize.Width * acceleration / 500;
             else
                 x1 = 0;
             if (x2 >= -windowSize.Width)
-                x2 -= windowSize.Width * (int)acceleration / 300;
+                x2 -= windowSize.Width * acceleration / 300;
             else
                 x2 = 0;
             if (x3 >= -windowSize.Width)
-                x3 -= windowSize.Width * (int)acceleration / 200;
+                x3 -= windowSize.Width * acceleration / 200;
             else
                 x3 = 0;
             if (x4 >= -windowSize.Width)
-                x4 -= windowSize.Width * (int)acceleration / 100;
+                x4 -= windowSize.Width * acceleration / 100;
             else
                 x4 = 0;
             if (x5 >= -windowSize.Width)
-                x5 -= windowSize.Width * (int)acceleration / 700;
+                x5 -= windowSize.Width * acceleration / 700;
             else
                 x5 = windowSize.Width;
 

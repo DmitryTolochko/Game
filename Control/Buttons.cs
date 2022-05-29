@@ -15,6 +15,7 @@ namespace Game
         public CustomButton GameOverBackToMainMenuButton;
         public CustomButton GoToStoreButton;
         public CustomButton VolumeButton;
+        public CustomButton ResumeForDiamonds;
 
         public Buttons(GameModel gameModel)
         {
@@ -23,17 +24,15 @@ namespace Game
                 Resource1.Game_pause_button_up,
                 Resource1.Game_pause_button_down,
                 gameModel.windowSize);
-            PauseButton.Click += (sender, args) => gameModel.IsGamePaused = true;
-            PauseButton.Click += (s, a) => MusicPlayer.Play(SoundType.Button);
+            PauseButton.Click += (s, a) => gameModel.IsGamePaused = true;
 
             PlayButton = new CustomButton(
                 new Point(gameModel.windowSize.Width/6, gameModel.windowSize.Height/3), 
                 Resource1.Menu_Play_button_up, 
                 Resource1.Menu_Play_button_down,
                 gameModel.windowSize);
-            PlayButton.Click += (sender, args) => gameModel.IsGameStarted = true;
-            PlayButton.Click += (sender, args) => gameModel.BackToMenu = false;
-            PlayButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            PlayButton.Click += (s, a) => gameModel.IsGameStarted = true;
+            PlayButton.Click += (s, a) => gameModel.BackToMenu = false;
 
             GoToStoreButton = new CustomButton(
                 new Point(PlayButton.Location.X,
@@ -41,8 +40,7 @@ namespace Game
                 Resource1.Store_button_up, 
                 Resource1.Store_button_down,
                 gameModel.windowSize);
-            GoToStoreButton.Click += (sender, args) => gameModel.GoToStore = true;
-            GoToStoreButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            GoToStoreButton.Click += (s, a) => gameModel.GoToStore = true;
 
             ExitButton = new CustomButton(
                 new Point(PlayButton.Location.X, 
@@ -50,8 +48,7 @@ namespace Game
                 Resource1.Menu_Exit_button_up, 
                 Resource1.Menu_Exit_button_down,
                 gameModel.windowSize);
-            ExitButton.Click += (sender, args) => Application.Exit();
-            ExitButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            ExitButton.Click += (s, a) => Application.Exit();
 
             PauseBackToMainMenuButton = new CustomButton(
                 new Point(
@@ -60,10 +57,9 @@ namespace Game
                 Resource1.Menu_button_up, 
                 Resource1.Menu_button_down,
                 gameModel.windowSize);
-            PauseBackToMainMenuButton.Click += (sender, args) => gameModel.BackToMenu = true;
-            PauseBackToMainMenuButton.Click += (sender, args) => gameModel.IsGameStarted = false;
-            PauseBackToMainMenuButton.Click += (sender, args) => gameModel.GoToStore = false;
-            PauseBackToMainMenuButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            PauseBackToMainMenuButton.Click += (s, a) => gameModel.BackToMenu = true;
+            PauseBackToMainMenuButton.Click += (s, a) => gameModel.IsGameStarted = false;
+            PauseBackToMainMenuButton.Click += (s, a) => gameModel.GoToStore = false;
 
             ResumeButton = new CustomButton(
                 new Point(PauseBackToMainMenuButton.Location.X, 
@@ -71,8 +67,7 @@ namespace Game
                 Resource1.Resume_button_up, 
                 Resource1.Resume_button_down,
                 gameModel.windowSize);
-            ResumeButton.Click += (sender, args) => gameModel.IsGameResumed = true;
-            ResumeButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            ResumeButton.Click += (s, a) => gameModel.IsGameResumed = true;
 
             PauseRecetButton = new CustomButton(
                 new Point(ResumeButton.Location.X,
@@ -80,8 +75,7 @@ namespace Game
                 Resource1.Reset_button_up, 
                 Resource1.Reset_button_down,
                 gameModel.windowSize);
-            PauseRecetButton.Click += (sender, args) => gameModel.Reset = true;
-            PauseRecetButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            PauseRecetButton.Click += (s, a) => gameModel.Reset = true;
 
             GameOverRecetButton = new CustomButton(
                 new Point(
@@ -90,8 +84,7 @@ namespace Game
                 Resource1.Reset_button_up,
                 Resource1.Reset_button_down,
                 gameModel.windowSize);
-            GameOverRecetButton.Click += (sender, args) => gameModel.Reset = true;
-            GameOverRecetButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            GameOverRecetButton.Click += (s, a) => gameModel.Reset = true;
 
             GameOverBackToMainMenuButton = new CustomButton(
                 new Point(gameModel.windowSize.Width / 2,
@@ -99,10 +92,9 @@ namespace Game
                 Resource1.Menu_button_up,
                 Resource1.Menu_button_down,
                 gameModel.windowSize);
-            GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.BackToMenu = true;
-            GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.IsGameStarted = false;
-            GameOverBackToMainMenuButton.Click += (sender, args) => gameModel.GoToStore = false;
-            GameOverBackToMainMenuButton.Click += (sender, args) => MusicPlayer.Play(SoundType.Button);
+            GameOverBackToMainMenuButton.Click += (s, a) => gameModel.BackToMenu = true;
+            GameOverBackToMainMenuButton.Click += (s, a) => gameModel.IsGameStarted = false;
+            GameOverBackToMainMenuButton.Click += (s, a) => gameModel.GoToStore = false;
 
             var image = MusicPlayer.VolumeImage;
             VolumeButton = new CustomButton(
@@ -113,11 +105,25 @@ namespace Game
                 gameModel.windowSize);
             VolumeButton.Click += (s, a) =>
             {
-                MusicPlayer.Play(SoundType.Button);
                 var imageNew = CustomButton.ResizedImage(gameModel.windowSize, MusicPlayer.ChangeVolume());
                 VolumeButton.Image = imageNew;
                 VolumeButton.GotFocus += (sender, args) => VolumeButton.Image = imageNew;
                 VolumeButton.LostFocus += (sender, args) => VolumeButton.Image = imageNew;
+            };
+
+            ResumeForDiamonds = new CustomButton(
+                new Point(GameOverRecetButton.Location.X-7*gameModel.windowSize.Width/1366,
+                (int)(GameOverRecetButton.Location.Y + GameOverRecetButton.Size.Height*1.7)),
+                Resource1.Continue_Button_Up,
+                Resource1.Continue_Button_Down,
+                gameModel.windowSize);
+            ResumeForDiamonds.Click += (s, a) =>
+            {
+                gameModel.IsGameFinished = false;
+                gameModel.obstacles.Clear();
+                gameModel.diamonds.Clear();
+                gameModel.BestCrystalCount -= 300;
+                gameModel.IsGameResumed = true;
             };
         }
     }
@@ -136,6 +142,7 @@ namespace Game
             GotFocus += (sender, args) => Image = ResizedImage(windowSize, PluggedButton);
             LostFocus += (sender, args) => Image = ResizedImage(windowSize, UnpluggedButton);
             Size = new Size(Image.Width, Image.Height);
+            Click += (s, a) => MusicPlayer.Play(SoundType.Button);
         }
 
         public static Bitmap ResizedImage(Size windowSize, Bitmap bitmap)

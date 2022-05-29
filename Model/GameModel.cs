@@ -61,7 +61,7 @@ namespace Game
             labels = new Labels(this);
             Controls.Add(labels.ScoreLabel);
             Controls.Add(labels.CrystalCountLabel);
-            Acceleration = 1.5;
+            Acceleration = 1.5*windowSize.Width/1366;
         }
 
         public void NextFrame(ControlCollection Controls, Size windowSize, Dictionary<string, Bitmap> images)
@@ -123,16 +123,29 @@ namespace Game
 
         private void CheckCollision()
         {
+            HashSet<Obstacle> obstacles = new HashSet<Obstacle>(this.obstacles);
             var flags = new HashSet<bool>();
             var border = 0;
             foreach (var obstacle in obstacles)
             {
                 if (Math.Abs(player.WorkSpace.Right - obstacle.WorkSpace.Left) <= 20 &&
                         (player.WorkSpace.Bottom > obstacle.WorkSpace.Top))
-                    IsGameFinished = true;
+                {
+                    if (obstacle.Name == "Banana")
+                    {
+                        Acceleration += 0.5;
+                        MusicPlayer.Play(SoundType.Banana);
+                    }
+                    else if (obstacle.Name == "Dirt")
+                        Acceleration -= 0.5;
+                    else
+                        IsGameFinished = true;
+                }
                 if ((player.WorkSpace.IntersectsWith(obstacle.WorkSpace) ||
                     player.WorkSpace.Contains(obstacle.WorkSpace)) &&
-                    obstacle.Name != "Manhole")
+                    obstacle.Name != "Manhole" &&
+                    obstacle.Name != "Dirt" &&
+                    obstacle.Name != "Banana")
                 {
                     flags.Add(true);
                     border = player.WorkSpace.Bottom - obstacle.WorkSpace.Top - 1;
@@ -155,9 +168,9 @@ namespace Game
         {
             Random random = new Random();
             if (obstacles.Count == 0)
-                obstacleGenerator.GetNewObstacle(obstacles, windowSize);
+                obstacleGenerator.GetNewObstacle(this);
             else if (obstacles.Count < 3 && random.Next() % 3 == 0 && obstacles.Last().ActualLocation.X + obstacles.Last().Size.Width <= windowSize.Width)
-                obstacleGenerator.GetNewObstacle(obstacles, windowSize);
+                obstacleGenerator.GetNewObstacle(this);
             if (obstacles.Count > 0 && obstacles[0].ActualLocation.X < -windowSize.Width)
                 obstacles.RemoveAt(0);
             foreach (var obstacle in obstacles)
@@ -181,6 +194,7 @@ namespace Game
 
         private void CheckDiamondCollision()
         {
+            HashSet<Diamond> diamonds = new HashSet<Diamond>(this.diamonds);
             foreach (var diamond in diamonds)
                 if (player.WorkSpace.Contains(diamond.ActualLocation.X + diamond.Size.Width, diamond.ActualLocation.Y))
                 {
@@ -189,7 +203,7 @@ namespace Game
                     BestCrystalCount++;
                     MusicPlayer.Play(SoundType.Crystal);
                 }
-            diamonds = diamonds
+            this.diamonds = diamonds
                 .Where(x => x.IsCollected == false)
                 .ToList();
         }

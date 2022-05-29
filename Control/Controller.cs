@@ -7,10 +7,10 @@ namespace Game
 {
     class Controller
     {
-        private static List<TargetDirection> targetDirections;
+        private static HashSet<TargetDirection> targetDirections;
         public static void KeyController(GameModel level)
         {
-            targetDirections = new List<TargetDirection>();
+            targetDirections = new HashSet<TargetDirection>();
             if (pressedKeys.Contains(Keys.Space))
                 targetDirections.Add(TargetDirection.Up);
             if (pressedKeys.Contains(Keys.D))
