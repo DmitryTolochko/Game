@@ -124,6 +124,7 @@ namespace Game
                 gameModel.diamonds.Clear();
                 gameModel.BestCrystalCount -= 300;
                 gameModel.IsGameResumed = true;
+                gameModel.IsFirstFrame = true;
             };
         }
     }

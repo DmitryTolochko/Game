@@ -43,41 +43,41 @@ namespace Game
                 level.windowSize.Height - 110 * level.windowSize.Height / 768);
 
             ScoreLabel = new CustomLabel(
-                level.Score.ToString(), 
-                Game_ScoreLocation, 
-                level.windowSize, 
-                Color.White, 
+                level.Score.ToString(),
+                Game_ScoreLocation,
+                level.windowSize,
+                Color.White,
                 40);
             BestScoreLabel = new CustomLabel(
-                level.BestScore.ToString(), 
-                GameOver_BestScoreLocation, 
-                level.windowSize, 
-                Color.Black, 
+                level.BestScore.ToString(),
+                GameOver_BestScoreLocation,
+                level.windowSize,
+                Color.Black,
                 40);
             CrystalCountLabel = new CustomLabel(
-                level.CrystalCount.ToString(), 
-                Game_CrystalCountLocation, 
-                level.windowSize, 
-                Color.Black, 
+                level.CrystalCount.ToString(),
+                Game_CrystalCountLocation,
+                level.windowSize,
+                Color.Black,
                 40);
             BestCrystalCountLabel = new CustomLabel(
-                level.BestCrystalCount.ToString(), 
-                GameOver_BestCrystalCountLocation, 
-                level.windowSize, 
-                Color.Black, 
+                level.BestCrystalCount.ToString(),
+                GameOver_BestCrystalCountLocation,
+                level.windowSize,
+                Color.Black,
                 40);
 
             GameOver_ScoreLabel = new CustomLabel(
-                level.Score.ToString(), 
-                GameOver_ScoreLocation, 
-                level.windowSize, 
-                Color.Black, 
+                level.Score.ToString(),
+                GameOver_ScoreLocation,
+                level.windowSize,
+                Color.Black,
                 10);
             GameOver_BestScoreLabel = new CustomLabel(
-                level.BestScore.ToString(), 
-                GameOver_BestScoreLocation, 
-                level.windowSize, 
-                Color.Black, 
+                level.BestScore.ToString(),
+                GameOver_BestScoreLocation,
+                level.windowSize,
+                Color.Black,
                 10);
         }
     }

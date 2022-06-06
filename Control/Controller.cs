@@ -17,7 +17,7 @@ namespace Game
                 targetDirections.Add(TargetDirection.Right);
             if (pressedKeys.Contains(Keys.A))
                 targetDirections.Add(TargetDirection.Left);
-            level.player.MoveTo(targetDirections, level.windowSize);
+            level.player.MoveTo(targetDirections, level);
             if (pressedKeys.Contains(Keys.Escape))
                 level.IsGamePaused = true;
         }

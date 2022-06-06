@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace Game
 {
@@ -11,15 +13,13 @@ namespace Game
         Pause,
         Game,
         Store,
-        GameOver,
-        Park
+        GameOver
     }
 
     public enum SoundType
     {
         Run,
         Crystal,
-        Jump,
         StoreBuy,
         StoreChoice,
         Button,
@@ -30,78 +30,73 @@ namespace Game
     {
         public static Bitmap VolumeImage = Resource1.Volume_100;
 
-        private readonly static WaveOutEvent player = new WaveOutEvent { Volume = 1 };
-        private readonly static WaveOutEvent FXplayer = new WaveOutEvent { Volume = 1 };
-        private readonly static WaveOutEvent ParkPlayer = new WaveOutEvent { Volume = 1 };
+        private readonly static MixingSampleProvider mixer = new
+            MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(44100, 2))
+        { ReadFully = true };
 
-        private readonly static AudioFileReader MainMenuMusic = new AudioFileReader(@"Sounds\MainMenu.wav");
-        private readonly static AudioFileReader GameMusic = new AudioFileReader(@"Sounds\Pulse.wav");
-        private readonly static AudioFileReader CrystalSound = new AudioFileReader(@"Sounds\Crystal.mp3");
-        private readonly static AudioFileReader GameOverMusic = new AudioFileReader(@"Sounds\Game_Over.mp3");
-        private readonly static AudioFileReader ParkSound = new AudioFileReader(@"Sounds\Park.mp3");
-        private readonly static AudioFileReader JumpSound = new AudioFileReader(@"Sounds\Jump.mp3");
-        private readonly static AudioFileReader StoreBuySound = new AudioFileReader(@"Sounds\Buy.mp3");
-        private readonly static AudioFileReader StoreChoiceSound = new AudioFileReader(@"Sounds\Choice.mp3");
-        private readonly static AudioFileReader ButtonSound = new AudioFileReader(@"Sounds\button_hover.mp3");
-        private readonly static AudioFileReader BananaSound = new AudioFileReader(@"Sounds\Banana.mp3");
-        private readonly static List<AudioFileReader> Run = new List<AudioFileReader>
-        { 
-            new AudioFileReader(@"Sounds\Run_1.mp3"), 
-            new AudioFileReader(@"Sounds\Run_2.mp3"), 
-            new AudioFileReader(@"Sounds\Run_3.mp3")
-        };
+        private readonly static WaveOutEvent player = new WaveOutEvent { Volume = 1 };
+
+        private readonly static LoopStream MainMenuMusic = new LoopStream(new WaveFileReader(@"Sounds\MainMenu.wav"));
+        private readonly static LoopStream GameMusic = new LoopStream(new WaveFileReader(@"Sounds\Pulse.wav"));
+        private readonly static LoopStream ParkSound = new LoopStream(new WaveFileReader(@"Sounds\Park.wav"));
+
+        private readonly static AudioFileReader GameOverMusic = new AudioFileReader(@"Sounds\Game_Over.wav");
+        
+        private readonly static CachedSound StoreBuySound = new CachedSound(@"Sounds\Buy.wav");
+        private readonly static CachedSound StoreChoiceSound = new CachedSound(@"Sounds\Choice.wav");
+        private readonly static CachedSound ButtonSound = new CachedSound(@"Sounds\button_hover.wav");
+        private readonly static CachedSound BananaSound = new CachedSound(@"Sounds\Banana.wav");
+        private readonly static CachedSound CrystalSound = new CachedSound(@"Sounds\Crystal.wav");
+        
         private readonly static Random random = new Random();
+
+        private readonly static List<CachedSound> RunSound = new List<CachedSound>
+        {
+            new CachedSound(@"Sounds\Run_1.wav"),
+            new CachedSound(@"Sounds\Run_2.wav"),
+            new CachedSound(@"Sounds\Run_3.wav"),
+        };
+
+        static MusicPlayer()
+        {
+            player.Init(mixer);
+            player.Play();
+        }
 
         public static void Play(MusicType musicType, bool isFirstFrame)
         {
+            if (isFirstFrame)
+                mixer.RemoveAllMixerInputs();
             switch (musicType)
             {
                 case MusicType.MainMenu:
                     {
-                        if (MainMenuMusic.Position == MainMenuMusic.Length || isFirstFrame)
+                        if (isFirstFrame)
                         {
-                            ParkPlayer.Dispose();
-                            MainMenuMusic.Position = 1;
-                            player.Dispose();
-                            player.Init(MainMenuMusic);
-                            player.Play();
+                            MainMenuMusic.Position = 0;
+                            mixer.AddMixerInput(MainMenuMusic);
                         }
                         break;
                     }
                 case MusicType.Game:
                     {
-                        if (GameMusic.Position == GameMusic.Length || isFirstFrame)
+                        if (isFirstFrame)
                         {
-                            GameMusic.Position = 1;
-                            GameMusic.Volume = 0.7f;
-                            player.Dispose();
-                            player.Init(GameMusic);
-                            player.Play();
+                            GameMusic.Position = 0;
+                            GameMusic.Position = 0;
+                            mixer.AddMixerInput(GameMusic);
+                            mixer.AddMixerInput(ParkSound);
                         }
                         break;
                     }
                 case MusicType.GameOver:
                     {
                         GameOverMusic.Position = 0;
-                        player.Dispose();
-                        player.Init(GameOverMusic);
-                        player.Play();
-                        break;
-                    }
-                case MusicType.Park:
-                    {
-                        if (ParkSound.Position == ParkSound.Length || isFirstFrame)
-                        {
-                            ParkSound.Position = 1;
-                            ParkSound.Volume = 2.1f;
-                            ParkPlayer.Dispose();
-                            ParkPlayer.Init(ParkSound);
-                            ParkPlayer.Play();
-                        }
+                        mixer.RemoveAllMixerInputs();
+                        mixer.AddMixerInput(new AutoDisposeFileReader(GameOverMusic));
                         break;
                     }
             }
-            
         }
 
         public static void Play(SoundType soundType)
@@ -110,65 +105,33 @@ namespace Game
             {
                 case SoundType.Run:
                     {
-                        var sound = Run[random.Next() % 3];
-                        sound.Position = 0;
-                        var player = new WaveOutEvent();
-                        player.Dispose();
-                        player.Init(sound);
-                        player.Play();
+                        var index = random.Next() % 3;
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(RunSound[index]));
                         break;
                     }
                 case SoundType.Crystal:
                     {
-                        CrystalSound.Position = 0;
-                        FXplayer.Dispose();
-                        FXplayer.Init(CrystalSound);
-                        FXplayer.Play();
-                        break;
-                    }
-                case SoundType.Jump:
-                    {
-                        JumpSound.Position = 0;
-                        JumpSound.Volume = 2f;
-                        FXplayer.Dispose();
-                        FXplayer.Init(JumpSound);
-                        FXplayer.Play();
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(CrystalSound));
                         break;
                     }
                 case SoundType.StoreBuy:
                     {
-                        StoreBuySound.Position = 0;
-                        StoreBuySound.Volume = 2f;
-                        FXplayer.Dispose();
-                        FXplayer.Init(StoreBuySound);
-                        FXplayer.Play();
-                        player.Dispose();
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(StoreBuySound));
                         break;
                     }
                 case SoundType.StoreChoice:
                     {
-                        StoreChoiceSound.Position = 0;
-                        StoreChoiceSound.Volume = 1.6f;
-                        FXplayer.Dispose();
-                        FXplayer.Init(StoreChoiceSound);
-                        FXplayer.Play();
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(StoreChoiceSound));
                         break;
                     }
                 case SoundType.Button:
                     {
-                        ButtonSound.Position = 0;
-                        ButtonSound.Volume = 1.6f;
-                        FXplayer.Dispose();
-                        FXplayer.Init(ButtonSound);
-                        FXplayer.Play();
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(ButtonSound));
                         break;
                     }
                 case SoundType.Banana:
                     {
-                        BananaSound.Position = 0;
-                        FXplayer.Dispose();
-                        FXplayer.Init(BananaSound);
-                        FXplayer.Play();
+                        mixer.AddMixerInput(new CachedSoundSampleProvider(BananaSound));
                         break;
                     }
             }
@@ -179,25 +142,136 @@ namespace Game
             if (player.Volume == 0)
             {
                 player.Volume = 1;
-                FXplayer.Volume = 1;
-                ParkPlayer.Volume = 1;
                 VolumeImage = Resource1.Volume_100;
                 return VolumeImage;
             }
             else if (player.Volume == 1)
             {
                 player.Volume = 0.5f;
-                FXplayer.Volume = 0.5f;
-                ParkPlayer.Volume = 0.5f;
             }
             else
             {
                 player.Volume = 0;
-                FXplayer.Volume = 0;
-                ParkPlayer.Volume = 0;
             }
             VolumeImage = player.Volume == 0 ? Resource1.Volume_0 : Resource1.Volume_50;
             return VolumeImage;
+        }
+    }
+
+    public class CachedSound
+    {
+        public float[] AudioData { get; private set; }
+        public WaveFormat WaveFormat { get; private set; }
+        public CachedSound(string audioFileName)
+        {
+            using (var audioFileReader = new AudioFileReader(audioFileName))
+            {
+                WaveFormat = audioFileReader.WaveFormat;
+                var wholeFile = new List<float>((int)(audioFileReader.Length / 4));
+                var readBuffer = new float[audioFileReader.WaveFormat.SampleRate * audioFileReader.WaveFormat.Channels];
+                int samplesRead;
+                while ((samplesRead = audioFileReader.Read(readBuffer, 0, readBuffer.Length)) > 0)
+                {
+                    wholeFile.AddRange(readBuffer.Take(samplesRead));
+                }
+                AudioData = wholeFile.ToArray();
+            }
+        }
+    }
+
+    public class CachedSoundSampleProvider : ISampleProvider
+    {
+        private readonly CachedSound cachedSound;
+        private long position;
+
+        public CachedSoundSampleProvider(CachedSound cachedSound)
+        {
+            this.cachedSound = cachedSound;
+        }
+
+        public int Read(float[] buffer, int offset, int count)
+        {
+            var availableSamples = cachedSound.AudioData.Length - position;
+            var samplesToCopy = Math.Min(availableSamples, count);
+            Array.Copy(cachedSound.AudioData, position, buffer, offset, samplesToCopy);
+            position += samplesToCopy;
+            return (int)samplesToCopy;
+        }
+
+        public WaveFormat WaveFormat { get { return cachedSound.WaveFormat; } }
+    }
+
+    public class AutoDisposeFileReader : ISampleProvider
+    {
+        private readonly AudioFileReader reader;
+        public bool isDisposed;
+        public AutoDisposeFileReader(AudioFileReader reader)
+        {
+            this.reader = reader;
+            this.WaveFormat = reader.WaveFormat;
+        }
+
+        public int Read(float[] buffer, int offset, int count)
+        {
+            if (isDisposed)
+                return 0;
+            int read = reader.Read(buffer, offset, count);
+            if (read == 0)
+            {
+                isDisposed = true;
+            }
+            return read;
+        }
+
+        public WaveFormat WaveFormat { get; private set; }
+    }
+
+    public class LoopStream : WaveStream
+    {
+        WaveStream sourceStream;
+
+        public LoopStream(WaveStream sourceStream)
+        {
+            this.sourceStream = sourceStream;
+            this.EnableLooping = true;
+        }
+
+        public bool EnableLooping { get; set; }
+
+        public override WaveFormat WaveFormat
+        {
+            get { return sourceStream.WaveFormat; }
+        }
+
+        public override long Length
+        {
+            get { return sourceStream.Length; }
+        }
+
+        public override long Position
+        {
+            get { return sourceStream.Position; }
+            set { sourceStream.Position = value; }
+        }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            int totalBytesRead = 0;
+
+            while (totalBytesRead < count)
+            {
+                int bytesRead = sourceStream.Read(buffer, offset + totalBytesRead, count - totalBytesRead);
+                if (bytesRead == 0)
+                {
+                    if (sourceStream.Position == 0 || !EnableLooping)
+                    {
+                        break;
+                    }
+                    sourceStream.Position = 0;
+                }
+                totalBytesRead += bytesRead;
+            }
+            return totalBytesRead;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace Game
         private readonly SceneryGenerator sceneryGenerator;
         private readonly ObstacleGenerator obstacleGenerator;
         public Player player;
-        public List<Obstacle> obstacles;
-        public List<Diamond> diamonds;
+        public Queue<Obstacle> obstacles;
+        public Queue<Diamond> diamonds;
 
         public int BestScore;
         public int Score;
@@ -54,14 +54,14 @@ namespace Game
             sceneryGenerator.ResetScenery();
             obstacleGenerator = new ObstacleGenerator();
             buttons = new Buttons(this);
-            obstacles = new List<Obstacle>();
-            diamonds = new List<Diamond>();
+            obstacles = new Queue<Obstacle>();
+            diamonds = new Queue<Diamond>();
             Controls.Clear();
             Controls.Add(buttons.PauseButton);
             labels = new Labels(this);
             Controls.Add(labels.ScoreLabel);
             Controls.Add(labels.CrystalCountLabel);
-            Acceleration = 1.5*windowSize.Width/1366;
+            Acceleration = 1.5 * windowSize.Width / 1366;
         }
 
         public void NextFrame(ControlCollection Controls, Size windowSize, Dictionary<string, Bitmap> images)
@@ -85,12 +85,11 @@ namespace Game
             CheckCollision();
             GenerateObstaclesAndCrystals();
             CheckDiamondCollision();
-            lock(windowElements)
-                lock(images)
+            lock (windowElements)
+                lock (images)
                     sceneryGenerator.UpdateScenery(windowSize, this, IsFirstFrame, player, obstacles, diamonds);
             UpdateScore(Controls);
             MusicPlayer.Play(MusicType.Game, IsFirstFrame);
-            MusicPlayer.Play(MusicType.Park, IsFirstFrame);
             IsFirstFrame = false;
         }
 
@@ -171,23 +170,23 @@ namespace Game
                 obstacleGenerator.GetNewObstacle(this);
             else if (obstacles.Count < 3 && random.Next() % 3 == 0 && obstacles.Last().ActualLocation.X + obstacles.Last().Size.Width <= windowSize.Width)
                 obstacleGenerator.GetNewObstacle(this);
-            if (obstacles.Count > 0 && obstacles[0].ActualLocation.X < -windowSize.Width)
-                obstacles.RemoveAt(0);
+            if (obstacles.Count > 0 && obstacles.Peek().ActualLocation.X < -windowSize.Width)
+                obstacles.Dequeue();
             foreach (var obstacle in obstacles)
                 obstacle.Move(13, this);
 
             if (diamonds.Count == 0)
-                diamonds.Add(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height*3 / 1080))));
+                diamonds.Enqueue(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height * 3 / 1080))));
 
-            else if (diamonds.Count < 3 && random.Next() % 6 == 0 && diamonds.Last().ActualLocation.X + diamonds.Last().Size.Width <= windowSize.Width && !obstacles.Last().HadCrystal)
+            else if (diamonds != null && diamonds.Count < 3 && random.Next() % 6 == 0 && diamonds.Last().ActualLocation.X + diamonds.Last().Size.Width <= windowSize.Width && !obstacles.Last().HadCrystal)
             {
-                diamonds.Add(new Diamond(windowSize, new Point(
-                    obstacles.Last().ActualLocation.X + obstacles.Last().Size.Width/2,
+                diamonds.Enqueue(new Diamond(windowSize, new Point(
+                    obstacles.Last().ActualLocation.X + obstacles.Last().Size.Width / 2,
                     obstacles.Last().ActualLocation.Y - (int)(50 * 2.4 * windowSize.Height / 1080))));
                 obstacles.Last().HadCrystal = true;
             }
-            if (diamonds.Count > 0 && diamonds[0].ActualLocation.X < -windowSize.Width)
-                diamonds.RemoveAt(0);
+            if (diamonds.Count > 0 && diamonds.Peek().ActualLocation.X < -windowSize.Width)
+                diamonds.Dequeue();
             foreach (var diamond in diamonds)
                 diamond.Move(13, this);
         }
@@ -203,9 +202,9 @@ namespace Game
                     BestCrystalCount++;
                     MusicPlayer.Play(SoundType.Crystal);
                 }
-            this.diamonds = diamonds
+            this.diamonds = new Queue<Diamond>(diamonds
                 .Where(x => x.IsCollected == false)
-                .ToList();
+                .ToHashSet());
         }
     }
 }

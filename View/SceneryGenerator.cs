@@ -10,11 +10,7 @@ namespace Game
     public class SceneryGenerator
     {
         private Size windowSize;
-        private double x1;
-        private double x2;
-        private double x3;
-        private double x4;
-        private double x5;
+        private double[] speeds = new double[5];
         private double transparenсy;
         private bool isADay = true;
         private readonly Random random = new Random();
@@ -36,57 +32,55 @@ namespace Game
                 backgroundSequence.Add(AdjustTransparency(images["Background_Day_time"], i));
                 citySequence.Add(AdjustTransparency(images["City_Night_ver"], 100 - i));
             }
-            clouds[0].Add(AdjustTransparency(images["Cloud_1"], 0));
-            clouds[1].Add(AdjustTransparency(images["Cloud_2"], 0));
-            clouds[2].Add(AdjustTransparency(images["Cloud_3"], 0));
-            clouds[3].Add(AdjustTransparency(images["Cloud_4"], 0));
-            clouds[4].Add(AdjustTransparency(images["Cloud_5"], 0));
-            clouds[5].Add(AdjustTransparency(images["Cloud_6"], 0));
-            clouds[6].Add(AdjustTransparency(images["Cloud_7"], 0));
-            clouds[0].Add(AdjustTransparency(images["Cloud_1"], 100));
-            clouds[1].Add(AdjustTransparency(images["Cloud_2"], 100));
-            clouds[2].Add(AdjustTransparency(images["Cloud_3"], 100));
-            clouds[3].Add(AdjustTransparency(images["Cloud_4"], 100));
-            clouds[4].Add(AdjustTransparency(images["Cloud_5"], 100));
-            clouds[5].Add(AdjustTransparency(images["Cloud_6"], 100));
-            clouds[6].Add(AdjustTransparency(images["Cloud_7"], 100));
+            var cloudImages = new Queue<Bitmap>();
+            foreach (var image in images)
+            {
+                if (image.Key.Contains("Cloud"))
+                    cloudImages.Enqueue(image.Value);
+            }
+            foreach (var cloud in clouds)
+            {
+                var image = cloudImages.Dequeue();
+                cloud.Add(AdjustTransparency(image, 0));
+                cloud.Add(AdjustTransparency(image, 100));
+            }
             ResetScenery();
         }
 
-        public void UpdateScenery(Size windowSize, GameModel level, 
-            bool isFirstFrame, Player player, List<Obstacle> obstacles, List<Diamond> crystals)
+        public void UpdateScenery(Size windowSize, GameModel level,
+            bool isFirstFrame, Player player, Queue<Obstacle> obstacles, Queue<Diamond> crystals)
         {
             this.windowSize = windowSize;
             this.isFirstFrame = isFirstFrame;
             level.windowElements.Clear();
             UpdateSky(level);
-            AddElement(level, new List<Bitmap> 
-            { 
-                images["_1_Layer_Trees_ver1"], 
-                images["_1_Layer_Trees_ver2"] 
-            }, 
-            x1, 0, windowSize, previousImages[0]);
-            AddElement(level, new List<Bitmap> 
-            { 
-                images["_2_Layer_Trees_ver1"], 
-                images["_2_Layer_Trees_ver2"], 
-                images["_2_Layer_Trees_ver3"] 
-            }, 
-            x2, 0, windowSize, previousImages[1]);
-            AddElement(level, new List<Bitmap> 
-            { 
-                images["Front_Bushes_1"], 
-                images["Front_Bushes_2"] 
-            }, 
-            x3, 0, windowSize, previousImages[2]);
-            AddElement(level, new List<Bitmap> 
-            { 
-                images["Road"], 
-                images["Road"] 
-            }, 
-            x4, 0, windowSize, previousImages[3]);
-            if (x2 > -windowSize.Width && isInstructionNeeded)
-                AddElement(level, images["Instruction"], x2, 0);
+            AddElement(level, new List<Bitmap>
+            {
+                images["_1_Layer_Trees_ver1"],
+                images["_1_Layer_Trees_ver2"]
+            },
+            speeds[0], 0, windowSize, previousImages[0]);
+            AddElement(level, new List<Bitmap>
+            {
+                images["_2_Layer_Trees_ver1"],
+                images["_2_Layer_Trees_ver2"],
+                images["_2_Layer_Trees_ver3"]
+            },
+            speeds[1], 0, windowSize, previousImages[1]);
+            AddElement(level, new List<Bitmap>
+            {
+                images["Front_Bushes_1"],
+                images["Front_Bushes_2"]
+            },
+            speeds[2], 0, windowSize, previousImages[2]);
+            AddElement(level, new List<Bitmap>
+            {
+                images["Road"],
+                images["Road"]
+            },
+            speeds[3], 0, windowSize, previousImages[3]);
+            if (speeds[1] > -windowSize.Width && isInstructionNeeded)
+                AddElement(level, images["Instruction"], speeds[1], 0);
             else
                 isInstructionNeeded = false;
 
@@ -99,11 +93,8 @@ namespace Game
 
         public void ResetScenery()
         {
-            x1 = 0;
-            x2 = 0;
-            x3 = 0;
-            x4 = 0;
-            x5 = 0;
+            for (int i = 0; i < 5; i++)
+                speeds[i] = 0;
             transparenсy = 100;
             isADay = true;
             previousImages = new List<Bitmap[]>
@@ -116,7 +107,7 @@ namespace Game
             };
         }
 
-        private void UpdateObstacles(GameModel level, List<Obstacle> obstacles)
+        private void UpdateObstacles(GameModel level, Queue<Obstacle> obstacles)
         {
             foreach (var obstacle in obstacles)
             {
@@ -137,12 +128,15 @@ namespace Game
                     playerAnim = player.JumpAnimation.AnimatePlayer(windowSize, level);
                 else
                     playerAnim = player.RunAnimation.AnimatePlayer(windowSize, level);
+
+                if ((player.IsCollised || player.IsJumping) && i > 0)
+                    break;
             }
             level.windowElements.Add(playerAnim);
             level.windowElements.Last().rectangle = player.WorkSpace;
         }
 
-        private void UpdateCrystals(GameModel level, List<Diamond> crystals)
+        private void UpdateCrystals(GameModel level, Queue<Diamond> crystals)
         {
             foreach (var crystal in crystals)
                 crystal.Animator.AnimateDiamond(windowSize, level, crystal);
@@ -160,7 +154,7 @@ namespace Game
                 else
                     cl.Add(cloud[0]);
             }
-            AddElement(level, cl, x3, 0, new Size(cl[0].Size.Width*3*level.windowSize.Width/1366, cl[0].Size.Height*3*level.windowSize.Height/768), previousImages[4]);
+            AddElement(level, cl, speeds[4], 0, new Size(cl[0].Size.Width * 3 * level.windowSize.Width / 1366, cl[0].Size.Height * 3 * level.windowSize.Height / 768), previousImages[4]);
             AddElement(level, images["City_Day_ver"], 0, 0);
             AddElement(level, citySequence[(int)transparenсy], 0, 0);
         }
@@ -177,26 +171,14 @@ namespace Game
 
         private void RecalculateImagesPositions(double acceleration)
         {
-            if (x1 >= -windowSize.Width)
-                x1 -= windowSize.Width * acceleration / 500;
-            else
-                x1 = 0;
-            if (x2 >= -windowSize.Width)
-                x2 -= windowSize.Width * acceleration / 300;
-            else
-                x2 = 0;
-            if (x3 >= -windowSize.Width)
-                x3 -= windowSize.Width * acceleration / 200;
-            else
-                x3 = 0;
-            if (x4 >= -windowSize.Width)
-                x4 -= windowSize.Width * acceleration / 100;
-            else
-                x4 = 0;
-            if (x5 >= -windowSize.Width)
-                x5 -= windowSize.Width * acceleration / 700;
-            else
-                x5 = windowSize.Width;
+            var koefs = new int[] { 500, 300, 200, 100, 700 };
+            for (int i = 0; i < 5; i++)
+            {
+                if (speeds[i] >= -windowSize.Width)
+                    speeds[i] -= windowSize.Width * acceleration / koefs[i];
+                else
+                    speeds[i] = 0;
+            }
 
             if (transparenсy > 0 && isADay)
             {
@@ -208,7 +190,7 @@ namespace Game
             }
             else
             {
-                isADay = isADay ? false : true;
+                isADay = !isADay;
             }
         }
 

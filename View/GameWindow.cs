@@ -153,8 +153,9 @@ namespace Game
                             (int)windowElement.yPosition,
                             windowElement.Size.Width,
                             windowElement.Size.Height);
-                        if (!windowElement.rectangle.IsEmpty)
-                            g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
+                        //Используется для отладки, чтобы видеть рабочие области предметов и игрока
+                        //if (!windowElement.rectangle.IsEmpty)
+                        //    g.DrawRectangle(new Pen(Color.White), windowElement.rectangle);
                     }
             ResumeLayout();
         }

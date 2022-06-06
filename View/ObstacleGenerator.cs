@@ -20,9 +20,8 @@ namespace Game
             var index = random.Next() % images.Count;
             while (imagesNames[index] == "Dirt" && gameModel.Acceleration < 3)
                 index = random.Next() % images.Count;
-            gameModel.obstacles.Add(new Obstacle(gameModel.windowSize, images[index], imagesNames[index]));
+            gameModel.obstacles.Enqueue(new Obstacle(gameModel.windowSize, images[index], imagesNames[index]));
         }
-
 
         private void GetImages()
         {

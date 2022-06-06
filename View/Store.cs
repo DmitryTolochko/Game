@@ -84,28 +84,12 @@ namespace Game
                 0));
             scoreChoices.Add(new ScoreChoice(3,
                 new Point((int)(scoreChoices.Last().ActualLocation.X + scoreChoices.Last().Size.Width * 1.5), 0),
-                Resource1.Character_Opened_00003,
-                Resource1.Character_Unopened_00003,
-                Resource1.Character_Choised_00003,
-                windowSize,
-                "Mom",
-                2500));
-            scoreChoices.Add(new ScoreChoice(4,
-                new Point(scoreChoices[0].ActualLocation.X, scoreChoices.Last().ActualLocation.Y + scoreChoices.Last().Size.Height),
-                Resource1.Character_Opened_00004,
-                Resource1.Character_Unopened_00004,
-                Resource1.Character_Choised_00004,
-                windowSize,
-                "Butler",
-                3000));
-            scoreChoices.Add(new ScoreChoice(5,
-                new Point(scoreChoices[1].ActualLocation.X, scoreChoices.Last().ActualLocation.Y),
                 Resource1.Character_Opened_00005,
                 Resource1.Character_Unopened_00005,
                 Resource1.Character_Choised_00005,
                 windowSize,
                 "Marvin",
-                5000));
+                3000));
 
         }
 

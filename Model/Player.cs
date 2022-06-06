@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Resources;
 
 namespace Game
@@ -23,7 +22,7 @@ namespace Game
         public Point SpawnLocation;
 
         private int timer = 0;
-        private int branchNum;
+        private TargetDirection targetDirection;
         public int Time;
         public int Acceleration = 10;
         public int JumpCount;
@@ -31,7 +30,6 @@ namespace Game
 
         public Player(Size windowSize, int SkinNumber)
         {
-            //Acceleration *= windowSize.Height / 768;
             SpawnLocation = new Point(-120, windowSize.Height - windowSize.Height * 67 / 100);
             ActualLocation = SpawnLocation;
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
@@ -63,14 +61,6 @@ namespace Game
                     {
                         return new ResourceManager(typeof(Resource2));
                     }
-                case 3:
-                    {
-                        return new ResourceManager(typeof(Resource2));
-                    }
-                case 4:
-                    {
-                        return new ResourceManager(typeof(Resource2));
-                    }
                 default:
                     {
                         return new ResourceManager(typeof(Resource10));
@@ -87,14 +77,6 @@ namespace Game
                         return new ResourceManager(typeof(Resource7));
                     }
                 case 2:
-                    {
-                        return new ResourceManager(typeof(Resource5));
-                    }
-                case 3:
-                    {
-                        return new ResourceManager(typeof(Resource5));
-                    }
-                case 4:
                     {
                         return new ResourceManager(typeof(Resource5));
                     }
@@ -117,14 +99,6 @@ namespace Game
                     {
                         return new ResourceManager(typeof(Resource8));
                     }
-                case 3:
-                    {
-                        return new ResourceManager(typeof(Resource5));
-                    }
-                case 4:
-                    {
-                        return new ResourceManager(typeof(Resource5));
-                    }
                 default:
                     {
                         return new ResourceManager(typeof(Resource12));
@@ -140,45 +114,36 @@ namespace Game
             Nowhere
         }
 
-        public void MoveTo(HashSet<TargetDirection> direction, Size windowSize)
+        public void MoveTo(HashSet<TargetDirection> direction, GameModel gameModel)
         {
-            ChangeYPos(direction, windowSize);
+            if ((int)gameModel.Acceleration > Acceleration%10 + 1)
+             Acceleration += 1;
+            ChangeYPos(direction);
 
             if (direction.Contains(TargetDirection.Left) && ActualLocation.X >= 0)
                 ActualLocation = new Point(ActualLocation.X - 15, ActualLocation.Y);
-            if (direction.Contains(TargetDirection.Right) && ActualLocation.X + Size.Width <= windowSize.Width)
+            if (direction.Contains(TargetDirection.Right) && ActualLocation.X + Size.Width <= gameModel.windowSize.Width)
                 ActualLocation = new Point(ActualLocation.X + 10, ActualLocation.Y);
             WorkSpace = new Rectangle(ActualLocation.X + Size.Width * 3 / 9,
                 ActualLocation.Y + Size.Height * 2 / 9, Size.Width / 4, Size.Height * 2 / 5);
         }
 
-        private void ChangeYPos(HashSet<TargetDirection> direction, Size windowSize)
+        private void ChangeYPos(HashSet<TargetDirection> direction)
         {
-            if (LastSpaceClick == false && direction.Contains(TargetDirection.Up))
-                JumpCount++;
-            if (direction.Contains(TargetDirection.Up))
-                LastSpaceClick = true;
-            else 
-                LastSpaceClick = false;
-            if (JumpCount > 2)
-                direction.Remove(TargetDirection.Up);
+            CountSpaceDoubleClicks(direction);
             if (timer < 7 && direction.Contains(TargetDirection.Up) && !(ActualLocation.Y < 0))
             {
                 if (JumpCount > 2)
                     JumpCount++;
-                if (branchNum != 1)
-                {
-                    branchNum = 1;
-                    Time = 1;
-                }
-                else
-                    Time++;
+                CheckAndChangeYDirection(TargetDirection.Up);
                 if (!IsJumping)
+                {
                     JumpAnimation.RestartAnimation();
-                IsJumping = true;
+                    IsJumping = true;
+                }
                 if (timer == 0)
                     timer++;
-                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - 10 - Acceleration * 8 / Math.Abs(Time));
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - Acceleration * 12 / Math.Abs(Time));
                 timer += 1;
             }
             else if (IsCollised && Border != -1)
@@ -187,55 +152,60 @@ namespace Game
             }
             else if (timer >= 7 && ActualLocation.Y <= Border && !IsCollised)
             {
-                if (branchNum != 2)
-                {
-                    branchNum = 2;
-                    Time = 1;
-                }
-                else
-                    Time++;
-                var dy = Acceleration * Time;
-                if (ActualLocation.Y + dy >= Border)
-                {
-                    ActualLocation = new Point(ActualLocation.X, Border);
-                    IsJumping = false;
-                }
-                else
-                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
+                CheckAndChangeYDirection(TargetDirection.Nowhere);
+                FallDown();
                 if (!direction.Contains(TargetDirection.Up))
                     timer = 0;
             }
             else if (!direction.Contains(TargetDirection.Up) && ActualLocation.Y <= Border && !IsCollised)
             {
-                if (branchNum != 2)
-                {
-                    branchNum = 2;
-                    Time = 1;
-                }
-                else
-                    Time++;
+                CheckAndChangeYDirection(TargetDirection.Nowhere);
                 timer--;
-                var dy = Acceleration * Time;
-                if (ActualLocation.Y + dy >= Border)
-                {
-                    ActualLocation = new Point(ActualLocation.X, Border);
-                    IsJumping = false;
-                }
-                else
-                    ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
+                FallDown();
                 if (ActualLocation.Y == Border)
-                {
                     timer = 0;
-                }
             }
             else
                 timer += 1;
             if (IsCollised && !direction.Contains(TargetDirection.Up))
-            {
                 timer = 0;
-            }
             if (ActualLocation.Y == Border && !direction.Contains(TargetDirection.Up) && !LastSpaceClick)
                 JumpCount = 0;
+        }
+
+        private void FallDown()
+        {
+            var dy = Acceleration * Time;
+            if (ActualLocation.Y + dy >= Border)
+            {
+                ActualLocation = new Point(ActualLocation.X, Border);
+                IsJumping = false;
+            }
+            else
+                ActualLocation = new Point(ActualLocation.X, ActualLocation.Y + dy);
+        }
+
+        private void CountSpaceDoubleClicks(HashSet<TargetDirection> direction)
+        {
+            if (LastSpaceClick == false && direction.Contains(TargetDirection.Up))
+                JumpCount++;
+            if (direction.Contains(TargetDirection.Up))
+                LastSpaceClick = true;
+            else
+                LastSpaceClick = false;
+            if (JumpCount > 2)
+                direction.Remove(TargetDirection.Up);
+        }
+
+        private void CheckAndChangeYDirection(TargetDirection direction)
+        {
+            if (targetDirection != direction)
+            {
+                targetDirection = direction;
+                Time = 1;
+            }
+            else
+                Time++;
         }
     }
 }
