@@ -9,9 +9,11 @@ namespace Game
         public Point ActualLocation;
         public Size Size;
         public bool IsCollected = false;
+        private double speed;
 
         public Diamond(Size windowSize, Point position)
         {
+            speed = windowSize.Width / 100;
             ActualLocation = position;
             Animator = new Animator(new ResourceManager(typeof(Resource4)));
             Size = new Size(
@@ -19,7 +21,7 @@ namespace Game
                 (int)(50 * 2.4 * windowSize.Height / 1080));
         }
 
-        public void Move(int speed, GameModel level)
+        public void Move(GameModel level)
         {
             Size = new Size(
                 (int)(50 * 2.4 * level.windowSize.Width / 1920),
@@ -31,6 +33,7 @@ namespace Game
 
         public void OnResize(GameModel level)
         {
+            speed = level.windowSize.Width / 100;
             Size = new Size(
                 (int)(50 * 2.4 * level.windowSize.Width / 1920),
                 (int)(50 * 2.4 * level.windowSize.Height / 1080));

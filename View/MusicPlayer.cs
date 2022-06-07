@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 
@@ -60,7 +61,7 @@ namespace Game
         static MusicPlayer()
         {
             player.Init(mixer);
-            player.Play();
+            Task.Run(() => player.Play());
         }
 
         public static void Play(MusicType musicType, bool isFirstFrame)
@@ -101,40 +102,45 @@ namespace Game
 
         public static void Play(SoundType soundType)
         {
-            switch (soundType)
+            lock(mixer)
+            Task.Run(() =>
             {
-                case SoundType.Run:
-                    {
-                        var index = random.Next() % 3;
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(RunSound[index]));
-                        break;
-                    }
-                case SoundType.Crystal:
-                    {
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(CrystalSound));
-                        break;
-                    }
-                case SoundType.StoreBuy:
-                    {
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(StoreBuySound));
-                        break;
-                    }
-                case SoundType.StoreChoice:
-                    {
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(StoreChoiceSound));
-                        break;
-                    }
-                case SoundType.Button:
-                    {
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(ButtonSound));
-                        break;
-                    }
-                case SoundType.Banana:
-                    {
-                        mixer.AddMixerInput(new CachedSoundSampleProvider(BananaSound));
-                        break;
-                    }
-            }
+                switch (soundType)
+                {
+                    case SoundType.Run:
+                        {
+                            var index = random.Next() % 3;
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(RunSound[index]));
+                            break;
+                        }
+                    case SoundType.Crystal:
+                        {
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(CrystalSound));
+                            break;
+                        }
+                    case SoundType.StoreBuy:
+                        {
+                            mixer.RemoveAllMixerInputs();
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(StoreBuySound));
+                            break;
+                        }
+                    case SoundType.StoreChoice:
+                        {
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(StoreChoiceSound));
+                            break;
+                        }
+                    case SoundType.Button:
+                        {
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(ButtonSound));
+                            break;
+                        }
+                    case SoundType.Banana:
+                        {
+                            mixer.AddMixerInput(new CachedSoundSampleProvider(BananaSound));
+                            break;
+                        }
+                }
+            });
         }
 
         public static Bitmap ChangeVolume()

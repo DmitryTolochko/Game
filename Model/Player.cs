@@ -43,6 +43,7 @@ namespace Game
 
         public void OnResize(GameModel level)
         {
+            Acceleration = Acceleration * level.windowSize.Height / 768;
             var windowSize = level.windowSize;
             SpawnLocation = new Point(-120 * windowSize.Width / 1366, windowSize.Height - windowSize.Height * 67 / 100);
             Size = new Size(windowSize.Width * 36 / 100, windowSize.Height * 64 / 100);
@@ -149,6 +150,7 @@ namespace Game
             else if (IsCollised && Border != -1)
             {
                 ActualLocation = new Point(ActualLocation.X, ActualLocation.Y - Border);
+                JumpCount = 1;
             }
             else if (timer >= 7 && ActualLocation.Y <= Border && !IsCollised)
             {

@@ -173,7 +173,7 @@ namespace Game
             if (obstacles.Count > 0 && obstacles.Peek().ActualLocation.X < -windowSize.Width)
                 obstacles.Dequeue();
             foreach (var obstacle in obstacles)
-                obstacle.Move(13, this);
+                obstacle.Move(this);
 
             if (diamonds.Count == 0)
                 diamonds.Enqueue(new Diamond(windowSize, new Point(windowSize.Width, windowSize.Height - (int)(50 * 2.4 * windowSize.Height * 3 / 1080))));
@@ -188,7 +188,7 @@ namespace Game
             if (diamonds.Count > 0 && diamonds.Peek().ActualLocation.X < -windowSize.Width)
                 diamonds.Dequeue();
             foreach (var diamond in diamonds)
-                diamond.Move(13, this);
+                diamond.Move(this);
         }
 
         private void CheckDiamondCollision()

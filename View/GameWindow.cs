@@ -23,8 +23,12 @@ namespace Game
 
         public MainForm()
         {
+            if (!File.Exists(@"Data.txt"))
+            {
+                File.WriteAllText(@"Data.txt", "0 \n 0 \n 2 \n 2");
+            }
             Icon = CustomIcon.Icon;
-            FormBorderStyle = FormBorderStyle.None;
+            //FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.CenterScreen;
             Size resolution = Screen.PrimaryScreen.Bounds.Size;
             Size = new Size(resolution.Width * 1366/2560, resolution.Height * 768/1440);
